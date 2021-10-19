@@ -38,8 +38,8 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         
         urlSessionTask = URLSession.shared.dataTask(with: urlAfterSearchUrl) { (data, urlResponse, error) in
             guard let data = data,
-                  let obj = try! JSONSerialization.jsonObject(with: data) as? [String: Any],
-                  let items = obj["items"] as? [[String: Any]] else {
+                  let objs = try! JSONSerialization.jsonObject(with: data) as? [String: Any],
+                  let items = objs["items"] as? [[String: Any]] else {
                 return
             }
             self.repositories = items
