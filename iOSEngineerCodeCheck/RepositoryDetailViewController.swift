@@ -22,17 +22,19 @@ class RepositoryDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let detailRepo = searchVC.repositories[searchVC.index]
+        guard let index = searchVC.index else {
+            return
+        }
+        let detailRepo = searchVC.repositories[index]
         languageLabel.text = "Written in \(detailRepo["language"] as? String ?? "")"
         starsLabel.text = "\(detailRepo["stargazers_count"] as? Int ?? 0) stars"
         watchersLabel.text = "\(detailRepo["wachers_count"] as? Int ?? 0) watchers"
         forksLabel.text = "\(detailRepo["forks_count"] as? Int ?? 0) forks"
         issuesLabel.text = "\(detailRepo["open_issues_count"] as? Int ?? 0) open issues"
-        configure()
+        configure(detailRepo: detailRepo)
     }
     
-    func configure(){
-        let detailRepo = searchVC.repositories[searchVC.index]
+    func configure(detailRepo: [String: Any]){
         titleLabel.text = detailRepo["full_name"] as? String
         guard let owner = detailRepo["owner"] as? [String: Any],
               let url = owner["avatar_url"] as? String,

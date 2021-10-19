@@ -13,7 +13,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     @IBOutlet weak var searchBar: UISearchBar!
     var repositories: [[String: Any]]=[]
     var urlSessionTask: URLSessionTask?
-    var index: Int!
+    var index: Int? // nilの可能性あり
     
     override func viewDidLoad() {
         super.viewDidLoad()
