@@ -9,11 +9,9 @@
 import UIKit
 
 class SearchViewController: UITableViewController, UISearchBarDelegate {
-
+    
     @IBOutlet weak var searchBar: UISearchBar!
-    
     var repositories: [[String: Any]]=[]
-    
     var urlSessionTask: URLSessionTask?
     var searchBarText: String!
     var urlAfterSearch: String!
@@ -35,11 +33,9 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
         guard let searchBarText = searchBar.text else{
             return
         }
-        
         urlAfterSearch = "https://api.github.com/search/repositories?q=\(searchBarText)"
         urlSessionTask = URLSession.shared.dataTask(with: URL(string: urlAfterSearch)!) { (data, urlResponse, error) in
             guard let data = data,
@@ -53,16 +49,13 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
             }
         }
         urlSessionTask?.resume()
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         if segue.identifier == "Detail"{
             let dtl = segue.destination as! RepositoryDetailViewController
             dtl.searchVC = self
         }
-        
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -70,20 +63,16 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = UITableViewCell()
         let rp = repositories[indexPath.row]
         cell.textLabel?.text = rp["full_name"] as? String ?? ""
         cell.detailTextLabel?.text = rp["language"] as? String ?? ""
         cell.tag = indexPath.row
         return cell
-        
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         index = indexPath.row
         performSegue(withIdentifier: "Detail", sender: self)
-        
     }
-    
 }
