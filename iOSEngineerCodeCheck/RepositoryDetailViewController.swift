@@ -32,9 +32,9 @@ class RepositoryDetailViewController: UIViewController {
     }
     
     func configure(){
-        let repo = searchVC.repositories[searchVC.index]
-        titleLabel.text = repo["full_name"] as? String
-        guard let owner = repo["owner"] as? [String: Any],
+        let detailRepo = searchVC.repositories[searchVC.index]
+        titleLabel.text = detailRepo["full_name"] as? String
+        guard let owner = detailRepo["owner"] as? [String: Any],
               let url = owner["avatar_url"] as? String,
               let imgUrl = URL(string: url) else {
             return
