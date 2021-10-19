@@ -53,8 +53,8 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Detail"{
-            let dtl = segue.destination as! RepositoryDetailViewController
-            dtl.searchVC = self
+            let vc = segue.destination as! RepositoryDetailViewController
+            vc.searchVC = self
         }
     }
     
@@ -63,12 +63,12 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        let rp = repositories[indexPath.row]
-        cell.textLabel?.text = rp["full_name"] as? String ?? ""
-        cell.detailTextLabel?.text = rp["language"] as? String ?? ""
-        cell.tag = indexPath.row
-        return cell
+        let tableCell = UITableViewCell()
+        let detailRepo = repositories[indexPath.row]
+        tableCell.textLabel?.text = detailRepo["full_name"] as? String ?? ""
+        tableCell.detailTextLabel?.text = detailRepo["language"] as? String ?? ""
+        tableCell.tag = indexPath.row
+        return tableCell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

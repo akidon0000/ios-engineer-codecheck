@@ -22,12 +22,12 @@ class RepositoryDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let repo = searchVC.repositories[searchVC.index]
-        languageLabel.text = "Written in \(repo["language"] as? String ?? "")"
-        starsLabel.text = "\(repo["stargazers_count"] as? Int ?? 0) stars"
-        watchersLabel.text = "\(repo["wachers_count"] as? Int ?? 0) watchers"
-        forksLabel.text = "\(repo["forks_count"] as? Int ?? 0) forks"
-        issuesLabel.text = "\(repo["open_issues_count"] as? Int ?? 0) open issues"
+        let detailRepo = searchVC.repositories[searchVC.index]
+        languageLabel.text = "Written in \(detailRepo["language"] as? String ?? "")"
+        starsLabel.text = "\(detailRepo["stargazers_count"] as? Int ?? 0) stars"
+        watchersLabel.text = "\(detailRepo["wachers_count"] as? Int ?? 0) watchers"
+        forksLabel.text = "\(detailRepo["forks_count"] as? Int ?? 0) forks"
+        issuesLabel.text = "\(detailRepo["open_issues_count"] as? Int ?? 0) open issues"
         configure()
     }
     
@@ -35,11 +35,11 @@ class RepositoryDetailViewController: UIViewController {
         let repo = searchVC.repositories[searchVC.index]
         titleLabel.text = repo["full_name"] as? String
         guard let owner = repo["owner"] as? [String: Any],
-              let imgURL = owner["avatar_url"] as? String,
-              let url = URL(string: imgURL) else {
+              let url = owner["avatar_url"] as? String,
+              let imgUrl = URL(string: url) else {
             return
         }
-        URLSession.shared.dataTask(with: url) { (data, res, err) in
+        URLSession.shared.dataTask(with: imgUrl) { (data, res, err) in
             guard let data = data,
                   let img: UIImage = UIImage(data: data) else{
                 return
