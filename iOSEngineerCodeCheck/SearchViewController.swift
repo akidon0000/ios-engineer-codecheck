@@ -38,23 +38,23 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
-        searchBarText = searchBar.text!
-        
-        if searchBarText.count != 0 {
-            urlAfterSearch = "https://api.github.com/search/repositories?q=\(searchBarText!)"
-            urlSessionTask = URLSession.shared.dataTask(with: URL(string: urlAfterSearch)!) { (data, res, err) in
-                if let obj = try! JSONSerialization.jsonObject(with: data!) as? [String: Any] {
-                    if let items = obj["items"] as? [[String: Any]] {
-                    self.repositories = items
-                        DispatchQueue.main.async {
-                            self.tableView.reloadData()
-                        }
-                    }
-                }
-            }
-        // これ呼ばなきゃリストが更新されません
-        urlSessionTask?.resume()
+        guard let searchBarText = searchBar.text else{
+            return
         }
+        
+        urlAfterSearch = "https://api.github.com/search/repositories?q=\(searchBarText)"
+        urlSessionTask = URLSession.shared.dataTask(with: URL(string: urlAfterSearch)!) { (data, urlResponse, error) in
+            guard let data = data,
+                  let obj = try! JSONSerialization.jsonObject(with: data) as? [String: Any],
+                  let items = obj["items"] as? [[String: Any]] else {
+                return
+            }
+            self.repositories = items
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+        urlSessionTask?.resume()
         
     }
     
