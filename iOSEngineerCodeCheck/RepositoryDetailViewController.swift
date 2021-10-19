@@ -41,7 +41,11 @@ class RepositoryDetailViewController: UIViewController {
               let imgUrl = URL(string: url) else {
             return
         }
-        URLSession.shared.dataTask(with: imgUrl) { (data, res, err) in
+        URLSession.shared.dataTask(with: imgUrl) { (data, urlResponse, error) in
+            if let NSError = error {
+                print(NSError)
+                return
+            }
             guard let data = data,
                   let img: UIImage = UIImage(data: data) else{
                 return

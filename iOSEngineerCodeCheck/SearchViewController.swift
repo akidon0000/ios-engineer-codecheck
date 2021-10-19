@@ -37,8 +37,12 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         }
         
         urlSessionTask = URLSession.shared.dataTask(with: urlAfterSearchUrl) { (data, urlResponse, error) in
+            if let NSError = error {
+                print(NSError)
+                return
+            }
             guard let data = data,
-                  let objs = try! JSONSerialization.jsonObject(with: data) as? [String: Any],
+                  let objs = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
                   let items = objs["items"] as? [[String: Any]] else {
                 return
             }
