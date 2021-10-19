@@ -13,7 +13,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     @IBOutlet weak var searchBar: UISearchBar!
     var repositories: [[String: Any]]=[]
     var urlSessionTask: URLSessionTask?
-    var index: Int? // nilの可能性あり
+    var tableCellDidSelectedIndex: Int? // nilの可能性あり
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,8 +38,8 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         
         urlSessionTask = URLSession.shared.dataTask(with: urlAfterSearchUrl) { (data, urlResponse, error) in
             guard let data = data,
-                  let obj = try! JSONSerialization.jsonObject(with: data) as? [String: Any],
-                  let items = obj["items"] as? [[String: Any]] else {
+                  let objs = try! JSONSerialization.jsonObject(with: data) as? [String: Any],
+                  let items = objs["items"] as? [[String: Any]] else {
                 return
             }
             self.repositories = items
@@ -71,7 +71,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        index = indexPath.row
+        tableCellDidSelectedIndex = indexPath.row
         performSegue(withIdentifier: "Detail", sender: self)
     }
 }
