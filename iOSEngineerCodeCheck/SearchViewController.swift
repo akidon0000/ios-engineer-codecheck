@@ -13,7 +13,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     @IBOutlet weak var searchBar: UISearchBar!
     var repositories: [[String: Any]]=[]
     var urlSessionTask: URLSessionTask?
-    var index: Int? // nilの可能性あり
+    var tableCellDidSelectedIndex: Int? // nilの可能性あり
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,7 +71,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        index = indexPath.row
+        tableCellDidSelectedIndex = indexPath.row
         performSegue(withIdentifier: "Detail", sender: self)
     }
 }

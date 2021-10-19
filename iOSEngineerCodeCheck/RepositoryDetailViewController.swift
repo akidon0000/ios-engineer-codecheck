@@ -22,7 +22,7 @@ class RepositoryDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let index = searchVC.index else {
+        guard let index = searchVC.tableCellDidSelectedIndex else {
             return
         }
         let detailRepo = searchVC.repositories[index]
