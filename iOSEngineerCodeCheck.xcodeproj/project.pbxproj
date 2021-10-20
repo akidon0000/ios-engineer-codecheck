@@ -95,6 +95,69 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A3E212E272031FB00B4B138 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				1A3E2135272032A900B4B138 /* etc */,
+				1A3E2137272032EC00B4B138 /* Model */,
+				1A3E21312720325400B4B138 /* View */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		1A3E21312720325400B4B138 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1A3E21322720326600B4B138 /* AppDelegate */,
+				1A3E21332720327600B4B138 /* SearchView */,
+				1A3E21342720328C00B4B138 /* DetailView */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1A3E21322720326600B4B138 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				BFD945DE244DC5E80012785A /* AppDelegate.swift */,
+				BFD945E0244DC5E80012785A /* SceneDelegate.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		1A3E21332720327600B4B138 /* SearchView */ = {
+			isa = PBXGroup;
+			children = (
+				BFD945E4244DC5E80012785A /* Main.storyboard */,
+				BFD945E2244DC5E80012785A /* SearchViewController.swift */,
+			);
+			path = SearchView;
+			sourceTree = "<group>";
+		};
+		1A3E21342720328C00B4B138 /* DetailView */ = {
+			isa = PBXGroup;
+			children = (
+				BF0A658C244F2A3B00280FA6 /* RepositoryDetailViewController.swift */,
+			);
+			path = DetailView;
+			sourceTree = "<group>";
+		};
+		1A3E2135272032A900B4B138 /* etc */ = {
+			isa = PBXGroup;
+			children = (
+				BFD945E7244DC5EB0012785A /* Assets.xcassets */,
+				BFD945E9244DC5EB0012785A /* LaunchScreen.storyboard */,
+				BFD945EC244DC5EB0012785A /* Info.plist */,
+			);
+			path = etc;
+			sourceTree = "<group>";
+		};
+		1A3E2137272032EC00B4B138 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		74EEC1E016AA58DCA5AA2C25 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -144,14 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				1A3E212C272031B300B4B138 /* R.generated.swift */,
-				BFD945DE244DC5E80012785A /* AppDelegate.swift */,
-				BFD945E0244DC5E80012785A /* SceneDelegate.swift */,
-				BFD945E2244DC5E80012785A /* SearchViewController.swift */,
-				BF0A658C244F2A3B00280FA6 /* RepositoryDetailViewController.swift */,
-				BFD945E4244DC5E80012785A /* Main.storyboard */,
-				BFD945E7244DC5EB0012785A /* Assets.xcassets */,
-				BFD945E9244DC5EB0012785A /* LaunchScreen.storyboard */,
-				BFD945EC244DC5EB0012785A /* Info.plist */,
+				1A3E212E272031FB00B4B138 /* App */,
 			);
 			path = iOSEngineerCodeCheck;
 			sourceTree = "<group>";
@@ -615,7 +671,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = iOSEngineerCodeCheck/Info.plist;
+				INFOPLIST_FILE = iOSEngineerCodeCheck/App/etc/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -635,7 +691,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = iOSEngineerCodeCheck/Info.plist;
+				INFOPLIST_FILE = iOSEngineerCodeCheck/App/etc/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
