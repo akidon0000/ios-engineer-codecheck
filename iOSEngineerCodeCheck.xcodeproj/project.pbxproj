@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1A3E212D272031B300B4B138 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3E212C272031B300B4B138 /* R.generated.swift */; };
+		1A3E2139272034C100B4B138 /* DetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A3E2138272034C100B4B138 /* DetailView.storyboard */; };
 		3B59C5F972454DF3AF64C69A /* Pods_iOSEngineerCodeCheck_iOSEngineerCodeCheckUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 981E43917F5796573B06CB7F /* Pods_iOSEngineerCodeCheck_iOSEngineerCodeCheckUITests.framework */; };
 		BF0A658D244F2A3B00280FA6 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0A658C244F2A3B00280FA6 /* DetailViewController.swift */; };
 		BFD945DF244DC5E80012785A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD945DE244DC5E80012785A /* AppDelegate.swift */; };
@@ -41,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		1A3E212C272031B300B4B138 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
+		1A3E2138272034C100B4B138 /* DetailView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailView.storyboard; sourceTree = "<group>"; };
 		3A19A03AD2573D39DDD0AE55 /* Pods-iOSEngineerCodeCheckTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSEngineerCodeCheckTests.debug.xcconfig"; path = "Target Support Files/Pods-iOSEngineerCodeCheckTests/Pods-iOSEngineerCodeCheckTests.debug.xcconfig"; sourceTree = "<group>"; };
 		52C47D6D1DE5E6A426BAF003 /* Pods-iOSEngineerCodeCheck-iOSEngineerCodeCheckUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSEngineerCodeCheck-iOSEngineerCodeCheckUITests.release.xcconfig"; path = "Target Support Files/Pods-iOSEngineerCodeCheck-iOSEngineerCodeCheckUITests/Pods-iOSEngineerCodeCheck-iOSEngineerCodeCheckUITests.release.xcconfig"; sourceTree = "<group>"; };
 		6885C51E588C5E7437AEDFAF /* Pods_iOSEngineerCodeCheck.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOSEngineerCodeCheck.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				BF0A658C244F2A3B00280FA6 /* DetailViewController.swift */,
+				1A3E2138272034C100B4B138 /* DetailView.storyboard */,
 			);
 			path = DetailView;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 			files = (
 				BFD945EB244DC5EB0012785A /* LaunchScreen.storyboard in Resources */,
 				BFD945E8244DC5EB0012785A /* Assets.xcassets in Resources */,
+				1A3E2139272034C100B4B138 /* DetailView.storyboard in Resources */,
 				BFD945E6244DC5E80012785A /* SearchView.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
