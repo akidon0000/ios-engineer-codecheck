@@ -18,7 +18,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var forksLabel: UILabel!
     @IBOutlet weak var issuesLabel: UILabel!
     
-    var searchVC: SearchViewController!
+    weak var searchVC: SearchViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,8 +41,10 @@ class DetailViewController: UIViewController {
               let imgUrl = URL(string: url) else {
             return
         }
-        URLSession.shared.dataTask(with: imgUrl) { (data, urlResponse, error) in
-            // 通信後の処理
+        let configuration = URLSessionConfiguration.default
+        let session = URLSession(configuration: configuration)
+        session.dataTask(with: imgUrl) { (data, urlResponse, error) in
+            session.finishTasksAndInvalidate()
             if let error = error {
                 print(error)
                 return

@@ -35,8 +35,10 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
               let urlAfterSearchUrl = URL(string: "https://api.github.com/search/repositories?q=\(searchBarText)") else{
             return
         }
-        
-        urlSessionTask = URLSession.shared.dataTask(with: urlAfterSearchUrl) { (data, urlResponse, error) in
+        let configuration = URLSessionConfiguration.default
+        let session = URLSession(configuration: configuration)
+        urlSessionTask = session.dataTask(with: urlAfterSearchUrl) { (data, urlResponse, error) in
+            session.finishTasksAndInvalidate()
             if let error = error {
                 print(error)
                 return
