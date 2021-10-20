@@ -42,8 +42,9 @@ class RepositoryDetailViewController: UIViewController {
             return
         }
         URLSession.shared.dataTask(with: imgUrl) { (data, urlResponse, error) in
-            if let NSError = error {
-                print(NSError)
+            // 通信後の処理
+            if let error = error {
+                print(error)
                 return
             }
             guard let data = data,
