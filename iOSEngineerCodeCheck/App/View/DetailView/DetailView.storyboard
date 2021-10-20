@@ -12,7 +12,7 @@
         <scene sceneID="9dY-xf-LYC">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I01-jB-mc7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <viewController id="6uq-kc-6rR" customClass="DetailViewController" customModule="iOSEngineerCodeCheck" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="detailViewVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6uq-kc-6rR" customClass="DetailViewController" customModule="iOSEngineerCodeCheck" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="j4W-Rc-gQK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
