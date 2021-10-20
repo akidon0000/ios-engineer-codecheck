@@ -37,8 +37,8 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         }
         
         urlSessionTask = URLSession.shared.dataTask(with: urlAfterSearchUrl) { (data, urlResponse, error) in
-            if let NSError = error {
-                print(NSError)
+            if let error = error {
+                print(error)
                 return
             }
             guard let data = data,
