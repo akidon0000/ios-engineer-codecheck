@@ -26,7 +26,7 @@ class DetailViewController: UIViewController {
             return
         }
         let detailRepo = searchVC.repositories[index]
-        languageLabel.text = "Written in \(detailRepo.language ?? "")"
+        languageLabel.text = "Written in \(detailRepo.language)"
         starsLabel.text = "\(detailRepo.stargazersCount) stars"
         watchersLabel.text = "\(detailRepo.watchersCount) watchers"
         forksLabel.text = "\(detailRepo.forksCount) forks"
