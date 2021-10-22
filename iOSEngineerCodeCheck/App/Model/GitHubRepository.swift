@@ -32,6 +32,7 @@ struct Owner: Decodable {
 }
 
 class GitHubAPI{
+    private static var task: URLSessionTask?
     
     static func searchRepository(text: String, completionHandler: @escaping ([Repository]) -> Void) {
         if text.isEmpty { return }
@@ -43,7 +44,7 @@ class GitHubAPI{
         
         let configuration = URLSessionConfiguration.default
         let session = URLSession(configuration: configuration)
-        let task = session.dataTask(with: url) { (data, response, error) in
+        task = session.dataTask(with: url) { (data, response, error) in
             session.finishTasksAndInvalidate()
             guard let date = data else {return}
             
@@ -51,7 +52,11 @@ class GitHubAPI{
                 completionHandler(jsonData.items)
             }
         }
-        task.resume()
+        task?.resume()
+    }
+    
+    static func taskCancel() {
+        task?.cancel()
     }
     
     static private var jsonStrategyDecoder: JSONDecoder {
