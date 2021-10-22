@@ -28,12 +28,12 @@ class SearchViewModel: NSObject {
     }
 
     var repos:[Repo] = []
-    var cellIndex = 0
+    var tappedCellIndex = 0
     
     func searchText(_ text: String) {
         state?(.busy)
         // 静的なメソッド　頻繁に使用する為
-        GitHubAPI.searchRepository(text: text) { [weak self] result in
+        ApiManager.searchRepository(text: text) { [weak self] result in
             // 別スレッド
             guard let self = self else { // selfがnilになる可能性がある、通信が終わった際に呼ばれるが、存在するかわからない
                 fatalError()

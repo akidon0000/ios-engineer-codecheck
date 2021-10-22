@@ -26,7 +26,7 @@ class DetailViewController: UIViewController {
     }
     
     private func setup(){
-        let idx = viewModel.cellIndex
+        let idx = viewModel.tappedCellIndex
         self.languageLabel.text = viewModel.repos[idx].lang
         self.starsLabel.text = viewModel.repos[idx].stars
         self.watchersLabel.text = viewModel.repos[idx].watchers

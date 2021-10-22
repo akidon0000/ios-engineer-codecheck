@@ -32,7 +32,7 @@ struct Owner: Decodable {
     let avatarUrl: String
 }
 
-class GitHubAPI{
+class ApiManager{
     private static var task: URLSessionTask?
     // 静的メソッド
     static func searchRepository(text: String, completionHandler: @escaping ([Repository]) -> Void) {

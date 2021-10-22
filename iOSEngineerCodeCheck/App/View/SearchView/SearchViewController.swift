@@ -11,9 +11,6 @@ import UIKit
 class SearchViewController: UITableViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
-    var repositories: [Repository] = []
-    var urlSessionTask: URLSessionTask?
-    var tableCellDidSelectedIndex: Int? // nilの可能性あり
     
     var viewModel = SearchViewModel()
     
@@ -43,7 +40,7 @@ class SearchViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.cellIndex = indexPath.row
+        viewModel.tappedCellIndex = indexPath.row
         let vc = R.storyboard.detailView.detailViewVC()!
         vc.viewModel = self.viewModel
         self.navigationController?.pushViewController(vc, animated: true)
@@ -58,7 +55,7 @@ extension  SearchViewController: UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        GitHubAPI.taskCancel()
+        ApiManager.taskCancel()
         tableView.reloadData()
     }
     
