@@ -10,6 +10,8 @@
 		1A3E212D272031B300B4B138 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3E212C272031B300B4B138 /* R.generated.swift */; };
 		1A3E2139272034C100B4B138 /* DetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A3E2138272034C100B4B138 /* DetailView.storyboard */; };
 		1A3E214127224F6E00B4B138 /* GitHubRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3E214027224F6E00B4B138 /* GitHubRepository.swift */; };
+		1A3E21432722990C00B4B138 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3E21422722990C00B4B138 /* DetailViewModel.swift */; };
+		1A3E214527229A3B00B4B138 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3E214427229A3B00B4B138 /* SearchViewModel.swift */; };
 		3B59C5F972454DF3AF64C69A /* Pods_iOSEngineerCodeCheck_iOSEngineerCodeCheckUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 981E43917F5796573B06CB7F /* Pods_iOSEngineerCodeCheck_iOSEngineerCodeCheckUITests.framework */; };
 		BF0A658D244F2A3B00280FA6 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0A658C244F2A3B00280FA6 /* DetailViewController.swift */; };
 		BFD945DF244DC5E80012785A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD945DE244DC5E80012785A /* AppDelegate.swift */; };
@@ -45,6 +47,8 @@
 		1A3E212C272031B300B4B138 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		1A3E2138272034C100B4B138 /* DetailView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailView.storyboard; sourceTree = "<group>"; };
 		1A3E214027224F6E00B4B138 /* GitHubRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubRepository.swift; sourceTree = "<group>"; };
+		1A3E21422722990C00B4B138 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		1A3E214427229A3B00B4B138 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		3A19A03AD2573D39DDD0AE55 /* Pods-iOSEngineerCodeCheckTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSEngineerCodeCheckTests.debug.xcconfig"; path = "Target Support Files/Pods-iOSEngineerCodeCheckTests/Pods-iOSEngineerCodeCheckTests.debug.xcconfig"; sourceTree = "<group>"; };
 		52C47D6D1DE5E6A426BAF003 /* Pods-iOSEngineerCodeCheck-iOSEngineerCodeCheckUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSEngineerCodeCheck-iOSEngineerCodeCheckUITests.release.xcconfig"; path = "Target Support Files/Pods-iOSEngineerCodeCheck-iOSEngineerCodeCheckUITests/Pods-iOSEngineerCodeCheck-iOSEngineerCodeCheckUITests.release.xcconfig"; sourceTree = "<group>"; };
 		6885C51E588C5E7437AEDFAF /* Pods_iOSEngineerCodeCheck.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOSEngineerCodeCheck.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,6 +135,7 @@
 		1A3E21332720327600B4B138 /* SearchView */ = {
 			isa = PBXGroup;
 			children = (
+				1A3E214427229A3B00B4B138 /* SearchViewModel.swift */,
 				BFD945E2244DC5E80012785A /* SearchViewController.swift */,
 				BFD945E4244DC5E80012785A /* SearchView.storyboard */,
 			);
@@ -140,6 +145,7 @@
 		1A3E21342720328C00B4B138 /* DetailView */ = {
 			isa = PBXGroup;
 			children = (
+				1A3E21422722990C00B4B138 /* DetailViewModel.swift */,
 				BF0A658C244F2A3B00280FA6 /* DetailViewController.swift */,
 				1A3E2138272034C100B4B138 /* DetailView.storyboard */,
 			);
@@ -498,6 +504,8 @@
 			files = (
 				BFD945E3244DC5E80012785A /* SearchViewController.swift in Sources */,
 				BF0A658D244F2A3B00280FA6 /* DetailViewController.swift in Sources */,
+				1A3E214527229A3B00B4B138 /* SearchViewModel.swift in Sources */,
+				1A3E21432722990C00B4B138 /* DetailViewModel.swift in Sources */,
 				1A3E212D272031B300B4B138 /* R.generated.swift in Sources */,
 				BFD945DF244DC5E80012785A /* AppDelegate.swift in Sources */,
 				BFD945E1244DC5E80012785A /* SceneDelegate.swift in Sources */,
