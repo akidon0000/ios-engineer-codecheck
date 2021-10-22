@@ -15,29 +15,32 @@ class SearchViewController: UITableViewController {
     var urlSessionTask: URLSessionTask?
     var tableCellDidSelectedIndex: Int? // nilの可能性あり
     
+    var viewModel = SearchViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.text = "GitHubのリポジトリを検索できるよー"
         searchBar.delegate = self
+        initViewModel()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return repositories.count
+        return viewModel.repos.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tableCell = UITableViewCell()
-        let detailRepo = repositories[indexPath.row]
-        tableCell.textLabel?.text = detailRepo.fullName
-        tableCell.detailTextLabel?.text = detailRepo.language
+        let detailRepo = viewModel.repos[indexPath.row]
+        tableCell.textLabel?.text = detailRepo.title
+        tableCell.detailTextLabel?.text = detailRepo.lang
         tableCell.tag = indexPath.row
         return tableCell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableCellDidSelectedIndex = indexPath.row
+        viewModel.cellIndex = indexPath.row
         let vc = R.storyboard.detailView.detailViewVC()!
-        vc.searchVC = self
+        vc.viewModel = self.viewModel
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -51,16 +54,39 @@ extension  SearchViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         GitHubAPI.taskCancel()
+        tableView.reloadData()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let searchBarText = searchBar.text else { return }
-        GitHubAPI.searchRepository(text: searchBarText) { result in
-            self.repositories = result
+        guard let text = searchBar.text else { return }
+        viewModel.searchText(text)
+    }
+    
+    /// ViewModel初期化
+    private func initViewModel() {
+        // Protocol： ViewModelが変化したことの通知を受けて画面を更新する
+        self.viewModel.state = { [weak self] (state) in
+            guard let self = self else {
+                fatalError()
+            }
             DispatchQueue.main.async {
-                self.tableView.reloadData()
+                switch state {
+                case .busy: // 通信中
+                    break
+
+                case .ready: // 通信完了
+                    // View更新
+                    self.tableView.reloadData()
+                    break
+                
+                
+                case .error: // Error
+                    break
+                    
+                }//end switch
             }
         }
     }
+
 
 }

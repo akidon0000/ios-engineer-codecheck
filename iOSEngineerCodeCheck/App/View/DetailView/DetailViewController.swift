@@ -18,26 +18,30 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var forksLabel: UILabel!
     @IBOutlet weak var issuesLabel: UILabel!
     
-    weak var searchVC: SearchViewController!
+    public var viewModel: SearchViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let index = searchVC.tableCellDidSelectedIndex else {
-            return
-        }
-        let detailRepo = searchVC.repositories[index]
-        languageLabel.text = "Written in \(detailRepo.language)"
-        starsLabel.text = "\(detailRepo.stargazersCount) stars"
-        watchersLabel.text = "\(detailRepo.watchersCount) watchers"
-        forksLabel.text = "\(detailRepo.forksCount) forks"
-        issuesLabel.text = "\(detailRepo.openIssuesCount) open issues"
-        titleLabel.text = detailRepo.fullName
-        imageView.image = getImageByUrl(url: detailRepo.avatarImageUrl)
+        setup()
     }
     
-    func getImageByUrl(url: URL?) -> UIImage{
+    private func setup(){
+        let idx = viewModel.cellIndex
+        self.languageLabel.text = viewModel.repos[idx].lang
+        self.starsLabel.text = viewModel.repos[idx].stars
+        self.watchersLabel.text = viewModel.repos[idx].watchers
+        self.forksLabel.text = viewModel.repos[idx].forks
+        self.issuesLabel.text = viewModel.repos[idx].issues
+        self.titleLabel.text = viewModel.repos[idx].title
+        self.imageView.image = getImageByUrl(urlString: viewModel.repos[idx].imageUrl)
+    }
+    
+    private func getImageByUrl(urlString: String) -> UIImage{
+        guard let url = URL(string: urlString) else {
+            return UIImage()
+        }
         do {
-            let data = try Data(contentsOf: url!)
+            let data = try Data(contentsOf: url)
             return UIImage(data: data)!
         } catch let err {
             print("Error : \(err.localizedDescription)")

@@ -34,7 +34,7 @@ struct Owner: Decodable {
 
 class GitHubAPI{
     private static var task: URLSessionTask?
-    
+    // 静的メソッド
     static func searchRepository(text: String, completionHandler: @escaping ([Repository]) -> Void) {
         if text.isEmpty { return }
             
@@ -48,8 +48,12 @@ class GitHubAPI{
                           headers: headers).responseJSON { response in
                             
             guard let data = response.data else { return }
-            if let jsonData = try? jsonStrategyDecoder.decode(Repositories.self, from: data) {
-                completionHandler(jsonData.items)
+            do {
+                let jsonData = try jsonStrategyDecoder.decode(Repositories.self, from: data)
+                completionHandler(jsonData.items) // このデータを無くさない為に@escaping リークの可能性あり
+            } catch { // パースエラー
+                print(error)
+                print(error.localizedDescription)
             }
         }
     }
