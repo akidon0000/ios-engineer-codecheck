@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchViewController: UITableViewController, UISearchBarDelegate {
+class SearchViewController: UITableViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     var repositories: [Repository] = []
@@ -19,25 +19,6 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         super.viewDidLoad()
         searchBar.text = "GitHubのリポジトリを検索できるよー"
         searchBar.delegate = self
-    }
-    
-    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        searchBar.text = ""
-        return true
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        GitHubAPI.taskCancel()
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let searchBarText = searchBar.text else { return }
-        GitHubAPI.searchRepository(text: searchBarText) { result in
-            self.repositories = result
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -59,4 +40,27 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         vc.searchVC = self
         self.navigationController?.pushViewController(vc, animated: true)
     }
+}
+
+extension  SearchViewController: UISearchBarDelegate {
+
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        searchBar.text = ""
+        return true
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        GitHubAPI.taskCancel()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let searchBarText = searchBar.text else { return }
+        GitHubAPI.searchRepository(text: searchBarText) { result in
+            self.repositories = result
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+
 }
