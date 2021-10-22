@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Alamofire
 
 struct Repositories: Decodable {
     let items: [Repository]
@@ -38,21 +39,19 @@ class GitHubAPI{
         if text.isEmpty { return }
             
         let urlString = "https://api.github.com/search/repositories?q=\(text)"
-        guard let url = URL(string: urlString) else {
-            return
-        }
         
-        let configuration = URLSessionConfiguration.default
-        let session = URLSession(configuration: configuration)
-        task = session.dataTask(with: url) { (data, response, error) in
-            session.finishTasksAndInvalidate()
-            guard let date = data else {return}
-            
-            if let jsonData = try? jsonStrategyDecoder.decode(Repositories.self, from: date) {
+        let headers: HTTPHeaders = ["Content-Type": "application/json"]
+        
+        Alamofire.request(urlString,
+                          method: .get,
+                          encoding: URLEncoding(destination: .queryString),
+                          headers: headers).responseJSON { response in
+                            
+            guard let data = response.data else { return }
+            if let jsonData = try? jsonStrategyDecoder.decode(Repositories.self, from: data) {
                 completionHandler(jsonData.items)
             }
         }
-        task?.resume()
     }
     
     static func taskCancel() {
