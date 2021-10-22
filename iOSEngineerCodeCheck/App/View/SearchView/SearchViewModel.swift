@@ -38,7 +38,7 @@ class SearchViewModel: NSObject {
             guard let self = self else { // selfがnilになる可能性がある、通信が終わった際に呼ばれるが、存在するかわからない
                 fatalError()
             }
-            
+            self.repos.removeAll() 
             for row in result {
                 let re = Repo()
                 re.lang = "Written in \(row.language)"
