@@ -19,9 +19,14 @@ class SearchViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setup()
+        initViewModel()
+    }
+    
+    private func setup() {
         searchBar.text = "GitHubのリポジトリを検索できるよー"
         searchBar.delegate = self
-        initViewModel()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
