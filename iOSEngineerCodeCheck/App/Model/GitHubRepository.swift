@@ -31,3 +31,32 @@ struct Owner: Decodable {
     let avatarUrl: String
 }
 
+class GitHubAPI{
+    
+    static func searchRepository(text: String, completionHandler: @escaping ([Repository]) -> Void) {
+        if text.isEmpty { return }
+            
+        let urlString = "https://api.github.com/search/repositories?q=\(text)"
+        guard let url = URL(string: urlString) else {
+            return
+        }
+        
+        let configuration = URLSessionConfiguration.default
+        let session = URLSession(configuration: configuration)
+        let task = session.dataTask(with: url) { (data, response, error) in
+            session.finishTasksAndInvalidate()
+            guard let date = data else {return}
+            
+            if let jsonData = try? jsonStrategyDecoder.decode(Repositories.self, from: date) {
+                completionHandler(jsonData.items)
+            }
+        }
+        task.resume()
+    }
+    
+    static private var jsonStrategyDecoder: JSONDecoder {
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        return decoder
+    }
+}

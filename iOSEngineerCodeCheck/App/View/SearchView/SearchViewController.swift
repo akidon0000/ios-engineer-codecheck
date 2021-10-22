@@ -11,7 +11,7 @@ import UIKit
 class SearchViewController: UITableViewController, UISearchBarDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
-    var repositories: [[String: Any]]=[]
+    var repositories: [Repository] = []
     var urlSessionTask: URLSessionTask?
     var tableCellDidSelectedIndex: Int? // nilの可能性あり
     
@@ -31,29 +31,13 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let searchBarText = searchBar.text,
-              let urlAfterSearchUrl = URL(string: "https://api.github.com/search/repositories?q=\(searchBarText)") else{
-            return
-        }
-        let configuration = URLSessionConfiguration.default
-        let session = URLSession(configuration: configuration)
-        urlSessionTask = session.dataTask(with: urlAfterSearchUrl) { (data, urlResponse, error) in
-            session.finishTasksAndInvalidate()
-            if let error = error {
-                print(error)
-                return
-            }
-            guard let data = data,
-                  let objs = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
-                  let items = objs["items"] as? [[String: Any]] else {
-                return
-            }
-            self.repositories = items
+        guard let searchBarText = searchBar.text else { return }
+        GitHubAPI.searchRepository(text: searchBarText) { result in
+            self.repositories = result
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
         }
-        urlSessionTask?.resume()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -63,8 +47,8 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tableCell = UITableViewCell()
         let detailRepo = repositories[indexPath.row]
-        tableCell.textLabel?.text = detailRepo["full_name"] as? String ?? ""
-        tableCell.detailTextLabel?.text = detailRepo["language"] as? String ?? ""
+        tableCell.textLabel?.text = detailRepo.fullName
+        tableCell.detailTextLabel?.text = detailRepo.language
         tableCell.tag = indexPath.row
         return tableCell
     }

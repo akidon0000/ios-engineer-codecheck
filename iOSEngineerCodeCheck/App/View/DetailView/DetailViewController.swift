@@ -26,36 +26,22 @@ class DetailViewController: UIViewController {
             return
         }
         let detailRepo = searchVC.repositories[index]
-        languageLabel.text = "Written in \(detailRepo["language"] as? String ?? "")"
-        starsLabel.text = "\(detailRepo["stargazers_count"] as? Int ?? 0) stars"
-        watchersLabel.text = "\(detailRepo["wachers_count"] as? Int ?? 0) watchers"
-        forksLabel.text = "\(detailRepo["forks_count"] as? Int ?? 0) forks"
-        issuesLabel.text = "\(detailRepo["open_issues_count"] as? Int ?? 0) open issues"
-        configure(detailRepo: detailRepo)
+        languageLabel.text = "Written in \(detailRepo.language ?? "")"
+        starsLabel.text = "\(detailRepo.stargazersCount) stars"
+        watchersLabel.text = "\(detailRepo.watchersCount) watchers"
+        forksLabel.text = "\(detailRepo.forksCount) forks"
+        issuesLabel.text = "\(detailRepo.openIssuesCount) open issues"
+        titleLabel.text = detailRepo.fullName
+        imageView.image = getImageByUrl(url: detailRepo.avatarImageUrl)
     }
     
-    func configure(detailRepo: [String: Any]){
-        titleLabel.text = detailRepo["full_name"] as? String
-        guard let owner = detailRepo["owner"] as? [String: Any],
-              let url = owner["avatar_url"] as? String,
-              let imgUrl = URL(string: url) else {
-            return
+    func getImageByUrl(url: URL?) -> UIImage{
+        do {
+            let data = try Data(contentsOf: url!)
+            return UIImage(data: data)!
+        } catch let err {
+            print("Error : \(err.localizedDescription)")
         }
-        let configuration = URLSessionConfiguration.default
-        let session = URLSession(configuration: configuration)
-        session.dataTask(with: imgUrl) { (data, urlResponse, error) in
-            session.finishTasksAndInvalidate()
-            if let error = error {
-                print(error)
-                return
-            }
-            guard let data = data,
-                  let img: UIImage = UIImage(data: data) else{
-                return
-            }
-            DispatchQueue.main.async {
-                self.imageView.image = img
-            }
-        }.resume()
+        return UIImage()
     }
 }
