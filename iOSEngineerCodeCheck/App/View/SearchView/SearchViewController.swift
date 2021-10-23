@@ -13,12 +13,14 @@ class SearchViewController: UITableViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     
     var viewModel = SearchViewModel()
+    var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setup()
         initViewModel()
+        generateActivityIndicator()
     }
     
     private func setup() {
@@ -72,9 +74,11 @@ extension  SearchViewController: UISearchBarDelegate {
             DispatchQueue.main.async {
                 switch state {
                 case .busy: // 通信中
+                    self.activityIndicator.startAnimating()
                     break
 
                 case .ready: // 通信完了
+                    self.activityIndicator.stopAnimating()
                     // View更新
                     self.tableView.reloadData()
                     break
@@ -86,5 +90,16 @@ extension  SearchViewController: UISearchBarDelegate {
                 }//end switch
             }
         }
+    }
+    
+    private func generateActivityIndicator() {
+        // ActivityIndicatorを作成＆中央に配置
+        activityIndicator = UIActivityIndicatorView()
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        activityIndicator.center = self.view.center
+        activityIndicator.style = UIActivityIndicatorView.Style.medium
+        activityIndicator.color = UIColor(red: 13/255, green: 169/255, blue: 251/255, alpha: 1)
+        activityIndicator.hidesWhenStopped = true // クルクルをストップした時に非表示する
+        self.view.addSubview(activityIndicator)
     }
 }
