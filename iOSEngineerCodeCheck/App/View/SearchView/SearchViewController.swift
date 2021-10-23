@@ -84,7 +84,7 @@ extension  SearchViewController: UISearchBarDelegate {
                     break
                 
                 
-                case .error: // Error
+                case .error:
                     break
                     
                 }//end switch
