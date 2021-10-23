@@ -26,31 +26,48 @@ class SearchViewModel: NSObject {
         var title = ""
         var imageUrl = ""
     }
-
+    
     var repos:[Repo] = []
     var tappedCellIndex = 0
+    let apiManager = ApiManager.singleton
     
     func searchText(_ text: String) {
-        state?(.busy)
-        // 静的なメソッド　頻繁に使用する為
-        ApiManager.searchRepository(text: text) { [weak self] result in
-            // 別スレッド
-            guard let self = self else { // selfがnilになる可能性がある、通信が終わった際に呼ばれるが、存在するかわからない
-                fatalError()
-            }
-            self.repos.removeAll() 
-            for row in result {
-                let re = Repo()
-                re.lang = "Written in \(row.language)"
-                re.stars = "\(row.stargazersCount) stars"
-                re.watchers = "\(row.watchersCount) watchers"
-                re.forks = "\(row.forksCount) forks"
-                re.issues = "\(row.openIssuesCount) open issues"
-                re.title = row.fullName
-                re.imageUrl = row.avatarImageUrl?.absoluteString ?? ""
-                self.repos.append(re)
-            }
-            self.state?(.ready)
-        }
+        state?(.busy) // 通信開始（通信中）
+        // API送信する
+        self.apiManager.searchRepository(text,
+                                   success: { [weak self] (response) in
+                                    guard let self = self else { // SearchViewModelのself
+                                        AKLog(level: .FATAL, message: "[self] FatalError")
+                                        fatalError()
+                                    }
+                                    self.repos.removeAll()
+                                    for row in response.items {
+                                        let re = Repo()
+                                        if let lang = row.language {
+                                            re.lang = "Written in \(lang)"
+                                        } else {
+                                            re.lang = "Language None"
+                                        }
+                                        if let fullName = row.fullName {
+                                            re.title = fullName
+                                        } else {
+                                            re.title = "Title None"
+                                        }
+                                        
+                                        re.stars = "\(row.stargazersCount ?? 0) stars"
+                                        re.watchers = "\(row.watchersCount ?? 0) watchers"
+                                        re.forks = "\(row.forksCount ?? 0) forks"
+                                        re.issues = "\(row.openIssuesCount ?? 0) open issues"
+                                        re.imageUrl = row.avatarImageUrl?.absoluteString ?? "NoImage"
+                                        self.repos.append(re)
+                                    }
+                                    self.state?(.ready) // 通信完了
+                                   },
+                                   
+                                   failure: { [weak self] (error) in
+                                    AKLog(level: .ERROR, message: "[API] userUpdate: failure:\(error.localizedDescription)")
+                                    self?.state?(.error) // エラー表示
+                                   }
+        )
     }
 }
