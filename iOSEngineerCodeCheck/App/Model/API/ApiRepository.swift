@@ -6,8 +6,4 @@
 //  Copyright © 2021 YUMEMI Inc. All rights reserved.
 //
 
-import UIKit
 
-class APIManager: NSObject {
-
-}
