@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+final class DetailViewController: UIViewController {
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -22,10 +22,10 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setup()
+        refresh()
     }
     
-    private func setup(){
+    private func refresh(){
         let idx = viewModel.tappedCellIndex
         self.languageLabel.text = viewModel.repos[idx].lang
         self.starsLabel.text = viewModel.repos[idx].stars
