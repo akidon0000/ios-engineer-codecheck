@@ -17,22 +17,26 @@ extension ApiManager {
     }
     
     struct Repository: Decodable {
-        let fullName: String
+        let fullName: String?
         let language: String?
         let description: String?
-        let stargazersCount: Int
-        let watchersCount: Int
-        let forksCount: Int
-        let openIssuesCount: Int
+        let stargazersCount: Int?
+        let watchersCount: Int?
+        let forksCount: Int?
+        let openIssuesCount: Int?
         let owner: Owner
         
         var avatarImageUrl: URL? {
-            return URL(string: owner.avatarUrl)
+            guard let avatarUrl = owner.avatarUrl,
+                let url = URL(string: avatarUrl) else {
+                return nil
+            }
+            return url
         }
     }
     
     struct Owner: Decodable {
-        let avatarUrl: String
+        let avatarUrl: String?
     }
     
     func repository(_ text: String,

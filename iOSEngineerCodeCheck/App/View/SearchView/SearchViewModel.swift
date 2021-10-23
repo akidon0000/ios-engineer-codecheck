@@ -32,7 +32,7 @@ class SearchViewModel: NSObject {
     public let apiManager = ApiManager.singleton
     
     func searchText(_ text: String) {
-        state?(.busy)
+        state?(.busy) // 通信開始（通信中）
         // API送信する
         self.apiManager.repository(text,
             success: { [weak self] (response) in
@@ -42,16 +42,25 @@ class SearchViewModel: NSObject {
                 self.repos.removeAll()
                 for row in response.items {
                     let re = Repo()
-                    re.lang = "Written in \(row.language)"
-                    re.stars = "\(row.stargazersCount) stars"
-                    re.watchers = "\(row.watchersCount) watchers"
-                    re.forks = "\(row.forksCount) forks"
-                    re.issues = "\(row.openIssuesCount) open issues"
-                    re.title = row.fullName
-                    re.imageUrl = row.avatarImageUrl?.absoluteString ?? ""
+                    if let lang = row.language {
+                        re.lang = "Written in \(lang)"
+                    } else {
+                        re.lang = "Language None"
+                    }
+                    if let fullName = row.fullName {
+                        re.title = fullName
+                    } else {
+                        re.title = "Title None"
+                    }
+                                        
+                    re.stars = "\(row.stargazersCount ?? 0) stars"
+                    re.watchers = "\(row.watchersCount ?? 0) watchers"
+                    re.forks = "\(row.forksCount ?? 0) forks"
+                    re.issues = "\(row.openIssuesCount ?? 0) open issues"
+                    re.imageUrl = row.avatarImageUrl?.absoluteString ?? "NoImage"
                     self.repos.append(re)
                 }
-                self.state?(.ready)
+                self.state?(.ready) // 通信完了
             },
             
             failure: { [weak self] (error) in
