@@ -43,7 +43,11 @@ extension ApiManager {
     func searchRepository(_ text: String,
                     success: @escaping (_ response: Repositories) -> (),
                     failure: @escaping (_ error: ApiError) -> ()) {
-        let url = "https://api.github.com/search/repositories?q=" + text
+        
+        guard let textEncodeString = text.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else {
+            return failure(ApiError.invalidURL)
+        }
+        let url = "https://api.github.com/search/repositories?q=\(textEncodeString)"
         
         AKLog(level: .DEBUG, message: "[API] URL:\n\(url)")
 
