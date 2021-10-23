@@ -109,30 +109,19 @@ class ApiManager: NSObject {
     ///   - reqeust: BaseRequest
     ///   - success: 正常時実行
     ///   - failure: 異常時実行
-    func ApiCall<ResponseT:Decodable>(
-        endPoint: String,
-        method: HTTPMethod,
-        reqeust: ApiRequest,
-        success: @escaping (_ response:ResponseT) -> (),
-        failure: @escaping (_ error:ApiError) -> ())
-    {
+    func ApiCall(endPoint: String,
+                 method: HTTPMethod,
+                 success: @escaping (_ response:Repositories) -> (),
+                 failure: @escaping (_ error:ApiError) -> ()) {
         // 接続確認
         if self.isConnected == false {
             AKLog(level: .WARN, message: "[API] 通信不可")
             failure(ApiError.notAvailable)
             return
         }
-
-        // リクエストJsonを作成
-        guard reqeust.toData() != nil, let reqeustDict = reqeust.toDict() else {
-            AKLog(level: .ERROR, message: "[API] BadRequest")
-            failure(ApiError.badRequest)
-            return
-        }
         
         let url = "https://api.github.com/search/repositories?q=" + endPoint
         AKLog(level: .DEBUG, message: "[API] URL:\n\(url)")
-        AKLog(level: .DEBUG, message: "[API] Request:\n\(reqeustDict)")
 
         // タイムアウト設定
         let manager = Alamofire.SessionManager.default.session.configuration
@@ -141,13 +130,11 @@ class ApiManager: NSObject {
         
         
         let headers: HTTPHeaders = ["Content-Type": "application/json"]
-        let request = Alamofire.request(url,
+        Alamofire.request(url,
                           method: method,
-                          parameters: reqeustDict,
-                          encoding: JSONEncoding(), //URLEncoding(destination: .queryString),
-                          headers: headers).validate(statusCode: API_HTTP_VALIDATE_STATUS)
-        
-        request.responseData(completionHandler: { (response) in
+                          encoding: URLEncoding(destination: .queryString),
+                          headers: headers).responseJSON { response in
+                            
             AKLog(level: .DEBUG, message: "[API] HttpStatus:\(String(describing: response.response?.statusCode ?? 0))")
             switch (response.result) {
             // 通信ステータス:OK
@@ -164,13 +151,14 @@ class ApiManager: NSObject {
                 #endif
                 // Json解析（共通レスポンス・ヘッダ処理）
                 do {
-                    let res = try JSONDecoder().decode(ResponseT.self, from: jsonData)
-                    AKLog(level: .DEBUG, message: "[API] res:\(res)    \(ResponseT.self)")
+                    let decoder = JSONDecoder()
+                    decoder.keyDecodingStrategy = .convertFromSnakeCase
+                    let res = try decoder.decode(Repositories.self, from: jsonData)
                     //API成功
                     success(res)
                 }
                 catch (let error) {
-                    AKLog(level: .DEBUG, message: "[API] JSONDecoder Error:\(error)")
+                    AKLog(level: .ERROR, message: "[API] JSONDecoder Error:\(error)")
                     failure(ApiError.badResponse)
                 }
 
@@ -197,6 +185,11 @@ class ApiManager: NSObject {
                     }
                 }
             }
-        })
+        }
+    }
+    static private var jsonStrategyDecoder: JSONDecoder {
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        return decoder
     }
 }

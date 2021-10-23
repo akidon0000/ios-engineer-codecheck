@@ -29,28 +29,37 @@ class SearchViewModel: NSObject {
 
     var repos:[Repo] = []
     var tappedCellIndex = 0
+    public let apiManager = ApiManager.singleton
     
     func searchText(_ text: String) {
         state?(.busy)
-        // 静的なメソッド　頻繁に使用する為
-        ApiManager.searchRepository(text: text) { [weak self] result in
-            // 別スレッド
-            guard let self = self else { // selfがnilになる可能性がある、通信が終わった際に呼ばれるが、存在するかわからない
-                fatalError()
-            }
-            self.repos.removeAll() 
-            for row in result {
-                let re = Repo()
-                re.lang = "Written in \(row.language)"
-                re.stars = "\(row.stargazersCount) stars"
-                re.watchers = "\(row.watchersCount) watchers"
-                re.forks = "\(row.forksCount) forks"
-                re.issues = "\(row.openIssuesCount) open issues"
-                re.title = row.fullName
-                re.imageUrl = row.avatarImageUrl?.absoluteString ?? ""
-                self.repos.append(re)
-            }
-            self.state?(.ready)
-        }
+        // API送信する
+        self.apiManager.repository(text,
+                                   success:
+                                    { [weak self] (response) in
+                                        guard let self = self else { // selfがnilになる可能性がある、通信が終わった際に呼ばれるが、存在するかわからない
+                                            fatalError()
+                                        }
+                                        self.repos.removeAll()
+                                        for row in response.items {
+                                            let re = Repo()
+                                            re.lang = "Written in \(row.language)"
+                                            re.stars = "\(row.stargazersCount) stars"
+                                            re.watchers = "\(row.watchersCount) watchers"
+                                            re.forks = "\(row.forksCount) forks"
+                                            re.issues = "\(row.openIssuesCount) open issues"
+                                            re.title = row.fullName
+                                            re.imageUrl = row.avatarImageUrl?.absoluteString ?? ""
+                                            self.repos.append(re)
+                                        }
+                                        self.state?(.ready)
+                                    },
+                                   failure:
+                { [weak self] (error) in
+                    AKLog(level: .ERROR, message: "[API] userUpdate: failure:\(error.localizedDescription)")
+                    // エラー中継（.stoppedを伝える必要があるため）
+//                    self?.state?(.error(.init(apiError: error)))
+                }
+        )
     }
 }
