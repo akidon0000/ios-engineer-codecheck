@@ -48,30 +48,4 @@ extension ApiManager {
                      failure:
                         failure)
     }
-    
-    
-    // 静的メソッド
-//    static func searchRepository(text: String, completionHandler: @escaping ([Repository]) -> Void) {
-//        if text.isEmpty { return }
-//
-//        let urlString = "https://api.github.com/search/repositories?q=\(text)"
-//
-//        let headers: HTTPHeaders = ["Content-Type": "application/json"]
-//
-//        Alamofire.request(urlString,
-//                          method: .get,
-//                          encoding: URLEncoding(destination: .queryString),
-//                          headers: headers).responseJSON { response in
-//
-//                            guard let data = response.data else { return }
-//                            do {
-//                                let jsonData = try jsonStrategyDecoder.decode(Repositories.self, from: data)
-//                                completionHandler(jsonData.items) // このデータを無くさない為に@escaping リークの可能性あり
-//                            } catch { // パースエラー
-//                                print(error)
-//                                print(error.localizedDescription)
-//                            }
-//                          }
-//    }
-
 }

@@ -21,12 +21,8 @@ public enum ApiError: Error {
     case none               // なし（正常）
     case notAvailable       // 通信不可
     case timeout            // タイムアウト
-    case badRequest         // 要求不正
-    case invalidAuth        // 認証不正
     case invalidURL         // URL不正
     case badResponse        // 応答不正
-    case tokenFailure       // トークン認証エラー
-    case stopped            // サービス停止中（メンテナンス中画面を表示して中断）
     case unknown(String)    // 未知
     case alert(String)      // アラート表示
 }
@@ -146,8 +142,8 @@ class ApiManager: NSObject {
                 }
                 #if DEBUG
                     // Json文字列を出力
-                    let jsonString = String(data: jsonData, encoding: .utf8) ?? response.debugDescription
-                    AKLog(level: .DEBUG, message: "[API] Response:\n\(jsonString)")
+//                    let jsonString = String(data: jsonData, encoding: .utf8) ?? response.debugDescription
+//                    AKLog(level: .DEBUG, message: "[API] Response:\n\(jsonString)")
                 #endif
                 // Json解析（共通レスポンス・ヘッダ処理）
                 do {
@@ -170,15 +166,15 @@ class ApiManager: NSObject {
                     failure(ApiError.timeout)
                 } else {
                     switch response.response?.statusCode {
-                    case 400:   // 要求不正
-                        AKLog(level: .ERROR, message: "[API] badRequest: \(error)")
-                        failure(ApiError.badRequest)
-                    case 401:   // 認証不正
-                        AKLog(level: .ERROR, message: "[API] invalidAuth: \(error)")
-                        failure(ApiError.invalidAuth)
+//                    case 400:   // 要求不正
+//                    case 401:   // 認証不正
                     case 404:   // URL不正
                         AKLog(level: .ERROR, message: "[API] invalidURL: \(error)")
                         failure(ApiError.invalidURL)
+//                    case 405:   // 許可されていないメソッド
+//                    case 409:   // 競合
+//                    case 500:   // サーバー内エラー
+//                    case 503:   // サービス利用不可
                     default:
                         AKLog(level: .ERROR, message: "[API] unknown: \(error)")
                         failure(ApiError.unknown("unknown: \(error)"))

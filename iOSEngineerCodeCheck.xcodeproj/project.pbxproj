@@ -167,6 +167,7 @@
 		1A3E2137272032EC00B4B138 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1A3E214027224F6E00B4B138 /* ApiManager.swift */,
 				1AAA6FED27240F3C00340295 /* API */,
 			);
 			path = Model;
@@ -183,7 +184,6 @@
 		1AAA6FED27240F3C00340295 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				1A3E214027224F6E00B4B138 /* ApiManager.swift */,
 				1AAA6FEE27240F4D00340295 /* ApiRepository.swift */,
 			);
 			path = API;
