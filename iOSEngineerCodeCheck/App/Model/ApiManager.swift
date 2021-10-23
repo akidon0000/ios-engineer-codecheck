@@ -69,7 +69,6 @@ extension ApiRequest {
 
 class ApiManager: NSObject {
     
-    
     // MARK: - Public value
     static let singleton = ApiManager() // シングルトン・インタンス
 

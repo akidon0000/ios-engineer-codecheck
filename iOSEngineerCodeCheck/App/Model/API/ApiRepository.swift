@@ -56,7 +56,6 @@ extension ApiManager {
         manager.timeoutIntervalForRequest = API_TIMEOUT // リクエスト開始まで
         manager.timeoutIntervalForResource = API_RESPONSE_TIMEOUT // リクエスト開始からレスポンス終了まで
         
-        
         let headers: HTTPHeaders = ["Content-Type": "application/json"]
         Alamofire.request(url,
                           method: .get,
@@ -72,11 +71,6 @@ extension ApiManager {
                     failure(ApiError.badResponse)
                     return
                 }
-                #if DEBUG
-                    // Json文字列を出力
-//                    let jsonString = String(data: jsonData, encoding: .utf8) ?? response.debugDescription
-//                    AKLog(level: .DEBUG, message: "[API] Response:\n\(jsonString)")
-                #endif
                 // Json解析（共通レスポンス・ヘッダ処理）
                 do {
                     let decoder = JSONDecoder()
