@@ -34,7 +34,7 @@ class SearchViewModel: NSObject {
     func searchText(_ text: String) {
         state?(.busy) // 通信開始（通信中）
         // API送信する
-        self.apiManager.repository(text,
+        self.apiManager.searchRepository(text,
                                    success: { [weak self] (response) in
                                     guard let self = self else { // SearchViewModelのself
                                         AKLog(level: .FATAL, message: "[self] FatalError")
