@@ -36,7 +36,7 @@ extension ApiManager {
         /// ホームページ
         let homePage: String?
         /// 更新日
-        let updatedAt: String?
+        let pushedAt: String?
         /// オーナー情報
         let owner: Owner?
         ///　ライセンス情報
