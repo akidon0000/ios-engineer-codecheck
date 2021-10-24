@@ -12,6 +12,7 @@ class SearchViewController: UITableViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     
+//    @IBOutlet var tableView: UITableView!
     var viewModel = SearchViewModel()
     var activityIndicator: UIActivityIndicatorView!
     
@@ -21,6 +22,7 @@ class SearchViewController: UITableViewController {
         setup()
         initViewModel()
         generateActivityIndicator()
+        setupTableView()
     }
     
     private func setup() {
@@ -28,17 +30,20 @@ class SearchViewController: UITableViewController {
         searchBar.delegate = self
     }
     
+    private func setupTableView() {
+        tableView.dataSource = self
+        tableView.register(SearchTableViewCell.nib(), forCellReuseIdentifier: SearchTableViewCell.reuseIdentifier)
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.repos.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let tableCell = UITableViewCell()
-        let detailRepo = viewModel.repos[indexPath.row]
-        tableCell.textLabel?.text = detailRepo.title
-        tableCell.detailTextLabel?.text = detailRepo.lang
-        tableCell.tag = indexPath.row
-        return tableCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.reuseIdentifier, for: indexPath) as? SearchTableViewCell else { return UITableViewCell() }
+//        cell.bind(title: self.viewModel.repos[indexPath.row].title, detail: self.viewModel.repos[indexPath.row].lang)
+        cell.setUI(repo: self.viewModel.repos[indexPath.row])
+        return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
