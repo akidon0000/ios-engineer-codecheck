@@ -48,7 +48,7 @@ class SearchViewModel: NSObject {
                                     for row in response.items {
                                         let re = Repo()
                                         if let lang = row.language {
-                                            re.lang = "Written in \(lang)"
+                                            re.lang = lang//"Written in \(lang)"
                                         } else {
                                             re.lang = "Language None"
                                         }
