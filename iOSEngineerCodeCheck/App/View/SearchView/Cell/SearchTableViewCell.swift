@@ -17,24 +17,13 @@ class SearchTableViewCell: UITableViewCell {
     @IBOutlet weak var starLabel: UILabel!
     @IBOutlet weak var languageLabel: UILabel!
     @IBOutlet weak var languageIconView: UIView!
-    @IBOutlet weak var contributorsLabel: UILabel!
+    @IBOutlet weak var lastUpdate: UILabel!
     
     static let reuseIdentifier = "SearchTableViewCell"
     
     /// セル高さ
     static let rowHeight: CGFloat = 150
     
-//    override func awakeFromNib() {
-//        super.awakeFromNib()
-//        self.initUI()
-//        // Initialization code
-//    }
-//
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//
-//        // Configure the view for the selected state
-//    }
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -42,11 +31,6 @@ class SearchTableViewCell: UITableViewCell {
     static func nib() -> UINib {
         return UINib(nibName: SearchTableViewCell.reuseIdentifier, bundle: nil)
     }
-
-//    func bind(title: String, detail: String) {
-//        self.userNameLabel.text = title
-//        self.repoNameLabel.text = detail
-//    }
     
 }
 
@@ -56,9 +40,7 @@ extension SearchTableViewCell {
         // 文字色の設定
         self.starLabel.textColor = .lightGray
         self.languageLabel.textColor = .lightGray
-        self.contributorsLabel.textColor = .lightGray
-        // スター色の設定
-//        self.starImageView.tintColor = .gray
+        self.lastUpdate.textColor = .lightGray
         // 言語アイコンの体裁設定
         self.languageIconView.backgroundColor = .gray
         self.languageIconView.clipsToBounds = true
@@ -70,12 +52,7 @@ extension SearchTableViewCell {
         self.descriptionLabel.text = repo.title
         self.starLabel.text = repo.stars
         self.languageLabel.text = repo.lang
-        self.contributorsLabel.text = repo.title
-//        self.setLanguageIconColor(language: repo.lang)
+        self.lastUpdate.text = repo.title
 
     }
-//    private func setLanguageIconColor(language: String?) {
-//        guard let language = language else { return }
-//        self.languageIconView.backgroundColor = LanguageIcon(language: language).color
-//    }
 }

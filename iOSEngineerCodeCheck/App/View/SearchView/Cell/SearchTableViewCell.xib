@@ -134,11 +134,11 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="ENc-Aa-BgB"/>
             <connections>
-                <outlet property="contributorsLabel" destination="uSA-cI-Vxl" id="vQp-sc-apR"/>
                 <outlet property="descriptionLabel" destination="Dxe-Df-03P" id="0cn-kA-axt"/>
                 <outlet property="imgView" destination="M24-Oc-duY" id="XhP-Fg-eYu"/>
                 <outlet property="languageIconView" destination="3WC-IH-8td" id="efX-EI-v8F"/>
                 <outlet property="languageLabel" destination="xUQ-bF-Kn7" id="Oz7-bM-Bw9"/>
+                <outlet property="lastUpdate" destination="uSA-cI-Vxl" id="vQp-sc-apR"/>
                 <outlet property="repoNameLabel" destination="den-WW-Kyt" id="HxD-eM-AXn"/>
                 <outlet property="starLabel" destination="Ht5-h4-wR5" id="i5u-f5-pZe"/>
                 <outlet property="userNameLabel" destination="cFd-lY-xvO" id="ybF-Wm-OcE"/>
