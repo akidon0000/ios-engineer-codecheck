@@ -24,7 +24,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="288" height="35"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="UserName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFd-lY-xvO">
-                                        <rect key="frame" x="35" y="0.0" width="253" height="15"/>
+                                        <rect key="frame" x="40" y="0.0" width="248" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="15" id="RUK-lI-yeb"/>
                                         </constraints>
@@ -39,7 +39,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RepositoryName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="den-WW-Kyt">
-                                        <rect key="frame" x="35" y="15" width="253" height="20"/>
+                                        <rect key="frame" x="40" y="15" width="248" height="20"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -55,9 +55,9 @@
                                     <constraint firstAttribute="height" constant="35" id="GdM-PR-rDO"/>
                                     <constraint firstItem="M24-Oc-duY" firstAttribute="top" secondItem="ong-y0-mRA" secondAttribute="top" id="doT-TP-UZf"/>
                                     <constraint firstItem="cFd-lY-xvO" firstAttribute="top" secondItem="ong-y0-mRA" secondAttribute="top" id="k4G-YH-0B9"/>
-                                    <constraint firstItem="den-WW-Kyt" firstAttribute="leading" secondItem="M24-Oc-duY" secondAttribute="trailing" id="oMu-za-WA0"/>
+                                    <constraint firstItem="den-WW-Kyt" firstAttribute="leading" secondItem="M24-Oc-duY" secondAttribute="trailing" constant="5" id="oMu-za-WA0"/>
                                     <constraint firstItem="den-WW-Kyt" firstAttribute="top" secondItem="cFd-lY-xvO" secondAttribute="bottom" id="yhD-dv-XIA"/>
-                                    <constraint firstItem="cFd-lY-xvO" firstAttribute="leading" secondItem="M24-Oc-duY" secondAttribute="trailing" id="zv8-JQ-3C9"/>
+                                    <constraint firstItem="cFd-lY-xvO" firstAttribute="leading" secondItem="M24-Oc-duY" secondAttribute="trailing" constant="5" id="zv8-JQ-3C9"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dxe-Df-03P">
@@ -71,6 +71,7 @@
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="COM-KM-32R">
                                         <rect key="frame" x="0.0" y="2" width="20" height="20"/>
+                                        <color key="tintColor" systemColor="opaqueSeparatorColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="LNL-tf-H9w"/>
                                             <constraint firstAttribute="width" constant="20" id="Uld-Tn-Zvk"/>
@@ -148,6 +149,9 @@
     </objects>
     <resources>
         <image name="star" catalog="system" width="128" height="116"/>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
