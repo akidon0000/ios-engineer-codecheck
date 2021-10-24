@@ -47,7 +47,7 @@ extension ApiManager {
         /// 名前
         let login: String?
         /// アバター画像URL
-        let avatarImage: String?
+        let avatarUrl: String?
     }
     
     struct License: Decodable {

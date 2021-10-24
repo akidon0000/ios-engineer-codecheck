@@ -47,12 +47,27 @@ extension SearchTableViewCell {
         self.languageIconView.layer.cornerRadius = self.languageIconView.frame.width / 2
     }
     func setUI(repo: SearchViewModel.Repo) {
-        self.userNameLabel.text = repo.title
-        self.repoNameLabel.text = repo.title
-        self.descriptionLabel.text = repo.title
+        self.imgView.image = getImageByUrl(urlString: repo.imageUrl)
+        self.userNameLabel.text = repo.ownerName
+        self.repoNameLabel.text = repo.repoName
+        self.descriptionLabel.text = repo.desc
         self.starLabel.text = repo.stars
         self.languageLabel.text = repo.lang
-        self.lastUpdate.text = repo.title
+        self.lastUpdate.text = repo.lastUpdate
 
+    }
+    private func getImageByUrl(urlString: String) -> UIImage{
+        guard let url = URL(string: urlString) else {
+            AKLog(level: .WARN, message: "NoImage")
+            return UIImage()
+        }
+        print(url)
+        do {
+            let data = try Data(contentsOf: url)
+            return UIImage(data: data)!
+        } catch let err {
+            AKLog(level: .WARN, message: "NoImage: \(err)")
+            return UIImage()
+        }
     }
 }

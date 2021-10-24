@@ -62,7 +62,7 @@ class SearchViewModel: NSObject {
                                         re.watchers = "\(row.watchersCount ?? 0) watchers"
                                         re.forks = "\(row.forksCount ?? 0) forks"
                                         re.issues = "\(row.openIssuesCount ?? 0) open issues"
-                                        re.imageUrl = row.owner?.avatarImage ?? "NoImage"
+                                        re.imageUrl = row.owner?.avatarUrl ?? "NoImage"
                                         
                                         re.ownerName = row.owner?.login ?? "None"
                                         re.repoName = row.name ?? "None"
