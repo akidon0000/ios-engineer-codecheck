@@ -17,28 +17,47 @@ extension ApiManager {
     }
     
     struct Repository: Decodable {
+        /// リポジトリ名
+        let name: String?
+        /// オーナー名+リポジトリ名
         let fullName: String?
+        /// リポジトリ言語
         let language: String?
-        let description: String?
+        /// スター数
         let stargazersCount: Int?
+        /// ウォッチ数
         let watchersCount: Int?
+        /// フォーク数
         let forksCount: Int?
+        /// イシュー数
         let openIssuesCount: Int?
-        let owner: Owner
-        
-        var avatarImageUrl: URL? {
-            guard let avatarUrl = owner.avatarUrl,
-                let url = URL(string: avatarUrl) else {
-                return nil
-            }
-            return url
-        }
+        /// 説明文
+        let description: String?
+        /// ホームページ
+        let homePage: String?
+        /// 更新日
+        let updatedAt: String?
+        /// オーナー情報
+        let owner: Owner?
+        ///　ライセンス情報
+        let license: License?
     }
     
     struct Owner: Decodable {
-        let avatarUrl: String?
+        /// 名前
+        let login: String?
+        /// アバター画像URL
+        let avatarImage: String?
     }
     
+    struct License: Decodable {
+        /// キー
+        let key: String?
+        /// 名前
+        let name: String?
+        /// URL
+        let url: String?
+    }
 
     func searchRepository(_ text: String,
                     success: @escaping (_ response: Repositories) -> (),

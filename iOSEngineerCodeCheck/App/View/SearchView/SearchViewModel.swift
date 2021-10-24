@@ -25,6 +25,10 @@ class SearchViewModel: NSObject {
         var issues = ""
         var title = ""
         var imageUrl = ""
+        var ownerName = ""
+        var repoName = ""
+        var desc = ""
+        var lastUpdate = ""
     }
     
     var repos:[Repo] = []
@@ -58,7 +62,11 @@ class SearchViewModel: NSObject {
                                         re.watchers = "\(row.watchersCount ?? 0) watchers"
                                         re.forks = "\(row.forksCount ?? 0) forks"
                                         re.issues = "\(row.openIssuesCount ?? 0) open issues"
-                                        re.imageUrl = row.avatarImageUrl?.absoluteString ?? "NoImage"
+                                        re.imageUrl = row.owner?.avatarImage ?? "NoImage"
+                                        
+                                        re.ownerName = row.owner?.login ?? "None"
+                                        re.repoName = row.name ?? "None"
+                                        re.desc = row.description ?? "None"
                                         self.repos.append(re)
                                     }
                                     self.state?(.ready) // 通信完了
