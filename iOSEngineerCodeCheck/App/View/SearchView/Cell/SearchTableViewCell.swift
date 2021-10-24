@@ -19,17 +19,12 @@ class SearchTableViewCell: UITableViewCell {
     @IBOutlet weak var languageIconView: UIView!
     @IBOutlet weak var lastUpdate: UILabel!
     
-    static let reuseIdentifier = "SearchTableViewCell"
-    
     /// セル高さ
     static let rowHeight: CGFloat = 150
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-
-    static func nib() -> UINib {
-        return UINib(nibName: SearchTableViewCell.reuseIdentifier, bundle: nil)
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.initUI()
     }
     
 }
@@ -37,10 +32,6 @@ class SearchTableViewCell: UITableViewCell {
 // MARK: - Setting UI Method
 extension SearchTableViewCell {
     private func initUI() {
-        // 文字色の設定
-        self.starLabel.textColor = .lightGray
-        self.languageLabel.textColor = .lightGray
-        self.lastUpdate.textColor = .lightGray
         // 言語アイコンの体裁設定
         self.languageIconView.backgroundColor = .gray
         self.languageIconView.clipsToBounds = true

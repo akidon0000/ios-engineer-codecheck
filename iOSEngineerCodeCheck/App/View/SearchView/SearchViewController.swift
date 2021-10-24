@@ -12,7 +12,6 @@ class SearchViewController: UITableViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     
-//    @IBOutlet var tableView: UITableView!
     var viewModel = SearchViewModel()
     var activityIndicator: UIActivityIndicatorView!
     
@@ -32,7 +31,7 @@ class SearchViewController: UITableViewController {
     
     private func setupTableView() {
         tableView.dataSource = self
-        tableView.register(SearchTableViewCell.nib(), forCellReuseIdentifier: SearchTableViewCell.reuseIdentifier)
+        tableView.register(UINib(nibName: "SearchTableViewCell", bundle: nil), forCellReuseIdentifier: "SearchTableViewCell")
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -40,8 +39,7 @@ class SearchViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.reuseIdentifier, for: indexPath) as? SearchTableViewCell else { return UITableViewCell() }
-//        cell.bind(title: self.viewModel.repos[indexPath.row].title, detail: self.viewModel.repos[indexPath.row].lang)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchTableViewCell", for: indexPath) as? SearchTableViewCell else { return UITableViewCell() }
         cell.setUI(repo: self.viewModel.repos[indexPath.row])
         return cell
     }
