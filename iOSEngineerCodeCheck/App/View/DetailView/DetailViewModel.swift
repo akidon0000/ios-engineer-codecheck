@@ -9,5 +9,35 @@
 import Foundation
 
 class DetailViewModel: NSObject {
-
+    //MARK: - STATE ステータス
+    enum State {
+        case busy           // 準備中
+        case ready          // 準備完了
+        case error          // エラー発生
+    }
+    public var state: ((State) -> Void)?
+    let apiManager = ApiManager.singleton
+    
+    func displayReadMe(ownerName: String,
+                       repoName: String) {
+        state?(.busy) // 通信開始（通信中）
+        let urlString = "https://raw.githubusercontent.com/\(ownerName)/\(repoName)/main/README.md"
+        self.apiManager.download(urlString: urlString,
+                                 success: { [weak self] (response) in
+                                    guard let self = self else { // SearchViewModelのself
+                                        AKLog(level: .FATAL, message: "[self] FatalError")
+                                        fatalError()
+                                    }
+                                    if let markdownReadMe = String(data: response, encoding: .utf8) {
+                                        
+                                    }
+                                    
+                                    self.state?(.ready) // 通信完了
+                                   },
+                                   
+                                   failure: { [weak self] (error) in
+                                    AKLog(level: .ERROR, message: "[API] userUpdate: failure:\(error.localizedDescription)")
+                                    self?.state?(.error) // エラー表示
+                                   })
+    }
 }

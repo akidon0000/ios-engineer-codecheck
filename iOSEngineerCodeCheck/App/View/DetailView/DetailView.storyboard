@@ -11,7 +11,6 @@
         <!--Detail View Controller-->
         <scene sceneID="9dY-xf-LYC">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="I01-jB-mc7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="detailViewVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6uq-kc-6rR" customClass="DetailViewController" customModule="iOSEngineerCodeCheck" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="j4W-Rc-gQK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -94,6 +93,7 @@
                         <outlet property="watchersLabel" destination="2ep-sg-Y4b" id="3a9-Pc-38I"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I01-jB-mc7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="230" y="137"/>
         </scene>

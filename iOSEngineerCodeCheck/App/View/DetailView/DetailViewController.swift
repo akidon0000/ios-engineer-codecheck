@@ -24,6 +24,7 @@ final class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         refresh()
+        initViewModel()
     }
     
     private func refresh(){
@@ -36,5 +37,34 @@ final class DetailViewController: UIViewController {
         self.titleLabel.text = searchViewModel.repos[idx].title
         let common = Common()
         self.imageView.image = common.getImageByUrl(urlString: searchViewModel.repos[idx].imageUrl)
+        self.viewModel.displayReadMe(ownerName: searchViewModel.repos[idx].ownerName, repoName: searchViewModel.repos[idx].repoName)
+    }
+    /// ViewModel初期化
+    private func initViewModel() {
+        // Protocol： ViewModelが変化したことの通知を受けて画面を更新する
+        self.viewModel.state = { [weak self] (state) in
+            guard let self = self else {
+                fatalError()
+            }
+            DispatchQueue.main.async {
+                switch state {
+                case .busy: // 通信中
+//                    self.activityIndicator.startAnimating()
+                    break
+
+                case .ready: // 通信完了
+//                    self.activityIndicator.stopAnimating()
+                    // View更新
+//                    self.tableView.reloadData()
+//                    self.titleLabel
+                    break
+                
+                
+                case .error:
+                    break
+                    
+                }//end switch
+            }
+        }
     }
 }
