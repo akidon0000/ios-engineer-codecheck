@@ -18,7 +18,8 @@ final class DetailViewController: UIViewController {
     @IBOutlet weak var forksLabel: UILabel!
     @IBOutlet weak var issuesLabel: UILabel!
     
-    public var viewModel: SearchViewModel!
+    public var searchViewModel: SearchViewModel!
+    var viewModel = DetailViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,14 +27,14 @@ final class DetailViewController: UIViewController {
     }
     
     private func refresh(){
-        let idx = viewModel.tappedCellIndex
-        self.languageLabel.text = viewModel.repos[idx].lang
-        self.starsLabel.text = viewModel.repos[idx].stars
-        self.watchersLabel.text = viewModel.repos[idx].watchers
-        self.forksLabel.text = viewModel.repos[idx].forks
-        self.issuesLabel.text = viewModel.repos[idx].issues
-        self.titleLabel.text = viewModel.repos[idx].title
+        let idx = searchViewModel.tappedCellIndex
+        self.languageLabel.text = searchViewModel.repos[idx].lang
+        self.starsLabel.text = searchViewModel.repos[idx].stars
+        self.watchersLabel.text = searchViewModel.repos[idx].watchers
+        self.forksLabel.text = searchViewModel.repos[idx].forks
+        self.issuesLabel.text = searchViewModel.repos[idx].issues
+        self.titleLabel.text = searchViewModel.repos[idx].title
         let common = Common()
-        self.imageView.image = common.getImageByUrl(urlString: viewModel.repos[idx].imageUrl)
+        self.imageView.image = common.getImageByUrl(urlString: searchViewModel.repos[idx].imageUrl)
     }
 }

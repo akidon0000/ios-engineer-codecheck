@@ -47,7 +47,7 @@ class SearchViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.tappedCellIndex = indexPath.row
         let vc = R.storyboard.detailView.detailViewVC()!
-        vc.viewModel = self.viewModel
+        vc.searchViewModel = self.viewModel
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
