@@ -33,19 +33,7 @@ final class DetailViewController: UIViewController {
         self.forksLabel.text = viewModel.repos[idx].forks
         self.issuesLabel.text = viewModel.repos[idx].issues
         self.titleLabel.text = viewModel.repos[idx].title
-        self.imageView.image = getImageByUrl(urlString: viewModel.repos[idx].imageUrl)
-    }
-    
-    private func getImageByUrl(urlString: String) -> UIImage{
-        guard let url = URL(string: urlString) else {
-            return UIImage()
-        }
-        do {
-            let data = try Data(contentsOf: url)
-            return UIImage(data: data)!
-        } catch let err {
-            print("Error : \(err.localizedDescription)")
-        }
-        return UIImage()
+        let common = Common()
+        self.imageView.image = common.getImageByUrl(urlString: viewModel.repos[idx].imageUrl)
     }
 }
