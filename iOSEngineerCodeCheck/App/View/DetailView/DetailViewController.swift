@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MarkdownView
 
 final class DetailViewController: UIViewController {
     
@@ -20,6 +21,7 @@ final class DetailViewController: UIViewController {
     
     public var searchViewModel: SearchViewModel!
     var viewModel = DetailViewModel()
+    private let mdView = MarkdownView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,9 +56,10 @@ final class DetailViewController: UIViewController {
 
                 case .ready: // 通信完了
 //                    self.activityIndicator.stopAnimating()
-                    // View更新
-//                    self.tableView.reloadData()
-//                    self.titleLabel
+                    // ReadMe書き込み
+                    self.mdView.frame = self.view.bounds
+                    self.mdView.load(markdown: self.viewModel.markdownReadMe)
+//                    self.view.addSubview(self.mdView)
                     break
                 
                 

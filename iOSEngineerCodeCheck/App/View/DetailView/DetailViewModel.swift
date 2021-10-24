@@ -17,6 +17,7 @@ class DetailViewModel: NSObject {
     }
     public var state: ((State) -> Void)?
     let apiManager = ApiManager.singleton
+    var markdownReadMe = ""
     
     func displayReadMe(ownerName: String,
                        repoName: String) {
@@ -28,8 +29,8 @@ class DetailViewModel: NSObject {
                                         AKLog(level: .FATAL, message: "[self] FatalError")
                                         fatalError()
                                     }
-                                    if let markdownReadMe = String(data: response, encoding: .utf8) {
-                                        
+                                    if let markdown = String(data: response, encoding: .utf8) {
+                                        self.markdownReadMe = markdown
                                     }
                                     
                                     self.state?(.ready) // 通信完了
