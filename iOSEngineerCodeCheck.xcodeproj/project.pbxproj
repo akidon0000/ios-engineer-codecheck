@@ -9,8 +9,15 @@
 /* Begin PBXBuildFile section */
 		1A3E212D272031B300B4B138 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3E212C272031B300B4B138 /* R.generated.swift */; };
 		1A3E2139272034C100B4B138 /* DetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A3E2138272034C100B4B138 /* DetailView.storyboard */; };
-		1A3E214127224F6E00B4B138 /* GitHubRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3E214027224F6E00B4B138 /* GitHubRepository.swift */; };
+		1A3E214127224F6E00B4B138 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3E214027224F6E00B4B138 /* ApiManager.swift */; };
 		1A3E214527229A3B00B4B138 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3E214427229A3B00B4B138 /* SearchViewModel.swift */; };
+		1AAA6FEC27240EBB00340295 /* AKLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAA6FEB27240EBB00340295 /* AKLibrary.swift */; };
+		1AAA6FEF27240F4D00340295 /* ApiRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAA6FEE27240F4D00340295 /* ApiRepository.swift */; };
+		1AAA6FF327245A2600340295 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAA6FF127245A2600340295 /* SearchTableViewCell.swift */; };
+		1AAA6FF427245A2600340295 /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AAA6FF227245A2600340295 /* SearchTableViewCell.xib */; };
+		1AAA6FF7272511EB00340295 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAA6FF6272511EB00340295 /* Common.swift */; };
+		1AAA6FF927256E9E00340295 /* ApiReadMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAA6FF827256E9E00340295 /* ApiReadMe.swift */; };
+		1AAA6FFB2725843E00340295 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAA6FFA2725843E00340295 /* DetailViewModel.swift */; };
 		3B59C5F972454DF3AF64C69A /* Pods_iOSEngineerCodeCheck_iOSEngineerCodeCheckUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 981E43917F5796573B06CB7F /* Pods_iOSEngineerCodeCheck_iOSEngineerCodeCheckUITests.framework */; };
 		BF0A658D244F2A3B00280FA6 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0A658C244F2A3B00280FA6 /* DetailViewController.swift */; };
 		BFD945DF244DC5E80012785A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD945DE244DC5E80012785A /* AppDelegate.swift */; };
@@ -45,8 +52,15 @@
 /* Begin PBXFileReference section */
 		1A3E212C272031B300B4B138 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		1A3E2138272034C100B4B138 /* DetailView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailView.storyboard; sourceTree = "<group>"; };
-		1A3E214027224F6E00B4B138 /* GitHubRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubRepository.swift; sourceTree = "<group>"; };
+		1A3E214027224F6E00B4B138 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		1A3E214427229A3B00B4B138 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		1AAA6FEB27240EBB00340295 /* AKLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AKLibrary.swift; sourceTree = "<group>"; };
+		1AAA6FEE27240F4D00340295 /* ApiRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRepository.swift; sourceTree = "<group>"; };
+		1AAA6FF127245A2600340295 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		1AAA6FF227245A2600340295 /* SearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchTableViewCell.xib; sourceTree = "<group>"; };
+		1AAA6FF6272511EB00340295 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		1AAA6FF827256E9E00340295 /* ApiReadMe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiReadMe.swift; sourceTree = "<group>"; };
+		1AAA6FFA2725843E00340295 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		3A19A03AD2573D39DDD0AE55 /* Pods-iOSEngineerCodeCheckTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSEngineerCodeCheckTests.debug.xcconfig"; path = "Target Support Files/Pods-iOSEngineerCodeCheckTests/Pods-iOSEngineerCodeCheckTests.debug.xcconfig"; sourceTree = "<group>"; };
 		52C47D6D1DE5E6A426BAF003 /* Pods-iOSEngineerCodeCheck-iOSEngineerCodeCheckUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSEngineerCodeCheck-iOSEngineerCodeCheckUITests.release.xcconfig"; path = "Target Support Files/Pods-iOSEngineerCodeCheck-iOSEngineerCodeCheckUITests/Pods-iOSEngineerCodeCheck-iOSEngineerCodeCheckUITests.release.xcconfig"; sourceTree = "<group>"; };
 		6885C51E588C5E7437AEDFAF /* Pods_iOSEngineerCodeCheck.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOSEngineerCodeCheck.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,6 +118,8 @@
 		1A3E212E272031FB00B4B138 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				1AAA6FF5272511CF00340295 /* Static */,
+				1AAA6FEA27240EA100340295 /* AKLibrary */,
 				1A3E2135272032A900B4B138 /* etc */,
 				1A3E2137272032EC00B4B138 /* Model */,
 				1A3E21312720325400B4B138 /* View */,
@@ -136,6 +152,7 @@
 				1A3E214427229A3B00B4B138 /* SearchViewModel.swift */,
 				BFD945E2244DC5E80012785A /* SearchViewController.swift */,
 				BFD945E4244DC5E80012785A /* SearchView.storyboard */,
+				1AAA6FF0272459C400340295 /* Cell */,
 			);
 			path = SearchView;
 			sourceTree = "<group>";
@@ -143,6 +160,7 @@
 		1A3E21342720328C00B4B138 /* DetailView */ = {
 			isa = PBXGroup;
 			children = (
+				1AAA6FFA2725843E00340295 /* DetailViewModel.swift */,
 				BF0A658C244F2A3B00280FA6 /* DetailViewController.swift */,
 				1A3E2138272034C100B4B138 /* DetailView.storyboard */,
 			);
@@ -162,9 +180,44 @@
 		1A3E2137272032EC00B4B138 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				1A3E214027224F6E00B4B138 /* GitHubRepository.swift */,
+				1A3E214027224F6E00B4B138 /* ApiManager.swift */,
+				1AAA6FED27240F3C00340295 /* API */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		1AAA6FEA27240EA100340295 /* AKLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				1AAA6FEB27240EBB00340295 /* AKLibrary.swift */,
+			);
+			path = AKLibrary;
+			sourceTree = "<group>";
+		};
+		1AAA6FED27240F3C00340295 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				1AAA6FEE27240F4D00340295 /* ApiRepository.swift */,
+				1AAA6FF827256E9E00340295 /* ApiReadMe.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		1AAA6FF0272459C400340295 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				1AAA6FF127245A2600340295 /* SearchTableViewCell.swift */,
+				1AAA6FF227245A2600340295 /* SearchTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		1AAA6FF5272511CF00340295 /* Static */ = {
+			isa = PBXGroup;
+			children = (
+				1AAA6FF6272511EB00340295 /* Common.swift */,
+			);
+			path = Static;
 			sourceTree = "<group>";
 		};
 		74EEC1E016AA58DCA5AA2C25 /* Frameworks */ = {
@@ -353,6 +406,7 @@
 				BFD945E8244DC5EB0012785A /* Assets.xcassets in Resources */,
 				1A3E2139272034C100B4B138 /* DetailView.storyboard in Resources */,
 				BFD945E6244DC5E80012785A /* SearchView.storyboard in Resources */,
+				1AAA6FF427245A2600340295 /* SearchTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -502,10 +556,16 @@
 				BFD945E3244DC5E80012785A /* SearchViewController.swift in Sources */,
 				BF0A658D244F2A3B00280FA6 /* DetailViewController.swift in Sources */,
 				1A3E214527229A3B00B4B138 /* SearchViewModel.swift in Sources */,
+				1AAA6FEF27240F4D00340295 /* ApiRepository.swift in Sources */,
+				1AAA6FF7272511EB00340295 /* Common.swift in Sources */,
+				1AAA6FEC27240EBB00340295 /* AKLibrary.swift in Sources */,
+				1AAA6FF927256E9E00340295 /* ApiReadMe.swift in Sources */,
 				1A3E212D272031B300B4B138 /* R.generated.swift in Sources */,
 				BFD945DF244DC5E80012785A /* AppDelegate.swift in Sources */,
+				1AAA6FFB2725843E00340295 /* DetailViewModel.swift in Sources */,
 				BFD945E1244DC5E80012785A /* SceneDelegate.swift in Sources */,
-				1A3E214127224F6E00B4B138 /* GitHubRepository.swift in Sources */,
+				1A3E214127224F6E00B4B138 /* ApiManager.swift in Sources */,
+				1AAA6FF327245A2600340295 /* SearchTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

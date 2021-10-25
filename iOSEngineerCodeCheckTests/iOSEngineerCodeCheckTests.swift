@@ -9,26 +9,33 @@
 import XCTest
 @testable import iOSEngineerCodeCheck
 
+/// サーバへリクエストを投げているか
+/// 正しくサーバにパラメータを渡しているか
+/// サーバとの通信が失敗した場合
+/// サーバから返ってきたJSONデータが想定と異なる場合
+/// サーバから返ってきたデータを正しく表示できているか
+
 class iOSEngineerCodeCheckTests: XCTestCase {
-
+    private let apiManager = ApiManager.singleton
+    
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
-
+    
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
+    
+    func testExample() {
+        let exp = expectation(description: "Hoge")
+        apiManager.searchRepository("Swift",
+                                    success: { (response) in
+                                        XCTAssertEqual(response.items[0].language!, "C++")
+                                        exp.fulfill()
+                                    },
+                                    failure: {_ in })
+        wait(for: [exp], timeout: 10.0)
+    }
+    
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
 
 }

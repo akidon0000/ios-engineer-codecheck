@@ -8,6 +8,7 @@ target 'iOSEngineerCodeCheck' do
   # Pods for iOSEngineerCodeCheck
   pod 'R.swift' , '~> 5.4.0'
   pod 'Alamofire' , '~> 4.9.1'
+  pod 'MarkdownView' , '~> 1.8.3'
 
   target 'iOSEngineerCodeCheckTests' do
     inherit! :search_paths
