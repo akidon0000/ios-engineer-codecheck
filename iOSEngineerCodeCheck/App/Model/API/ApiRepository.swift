@@ -71,15 +71,13 @@ extension ApiManager {
         AKLog(level: .DEBUG, message: "[API] URL:\n\(url)")
         
         // タイムアウト設定
-        let manager = Alamofire.SessionManager.default.session.configuration
-        manager.timeoutIntervalForRequest = API_TIMEOUT // リクエスト開始まで
-        manager.timeoutIntervalForResource = API_RESPONSE_TIMEOUT // リクエスト開始からレスポンス終了まで
+        manager.session.configuration.timeoutIntervalForRequest = API_TIMEOUT // リクエスト開始まで
+        manager.session.configuration.timeoutIntervalForResource = API_RESPONSE_TIMEOUT // リクエスト開始からレスポンス終了まで
         
-        let headers: HTTPHeaders = ["Content-Type": "application/json"]
-        Alamofire.request(url,
-                          method: .get,
-                          encoding: URLEncoding(destination: .queryString),
-                          headers: headers).responseJSON { response in
+        manager.request(url,
+                        method: .get,
+                        encoding: URLEncoding(destination: .queryString),
+                        headers: headers).responseJSON { response in
                             
                             AKLog(level: .DEBUG, message: "[API] HttpStatus:\(String(describing: response.response?.statusCode ?? 0))")
                             switch (response.result) {
@@ -126,7 +124,7 @@ extension ApiManager {
                                     }
                                 }
                             }
-                          }
+                        }
     }
     static private var jsonStrategyDecoder: JSONDecoder {
         let decoder = JSONDecoder()

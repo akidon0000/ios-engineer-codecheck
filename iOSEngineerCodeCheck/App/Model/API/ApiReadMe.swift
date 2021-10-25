@@ -17,7 +17,10 @@ extension ApiManager {
         
         AKLog(level: .DEBUG, message: "\(urlString)")
         
-        Alamofire.request(urlString).response { response in
+        manager.session.configuration.timeoutIntervalForRequest = API_TIMEOUT // リクエスト開始まで
+        manager.session.configuration.timeoutIntervalForResource = API_RESPONSE_TIMEOUT // リクエスト開始からレスポンス終了まで
+        
+        manager.request(urlString).response { response in
             guard let data = response.data else {
                 failure(ApiError.none)
                 return

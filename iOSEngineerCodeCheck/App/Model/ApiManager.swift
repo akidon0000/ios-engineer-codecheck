@@ -75,6 +75,10 @@ class ApiManager: NSObject {
     // ネットワーク接続状態
     private var isConnected = false
     
+    // タイムアウト設定
+    let manager = Alamofire.SessionManager.default
+    let headers: HTTPHeaders = ["Content-Type": "application/json"]
+    
     /// シングルトン・インスタンスの初期処理
     private override init() {  //シングルトン保証// privateにすることにより他から初期化させない
         super.init()
@@ -88,6 +92,7 @@ class ApiManager: NSObject {
             } else {
                 // Disconnect
                 self?.isConnected = false
+                AKLog(level: .WARN, message: "[Network] Disconnect")
             }
         }
         let queue = DispatchQueue(label: "com.akidon0000.queue")
