@@ -25,7 +25,7 @@ class SearchViewController: UITableViewController {
     }
     
     private func setup() {
-        searchBar.text = "GitHubのリポジトリを検索できるよー"
+        searchBar.placeholder = "GitHubのリポジトリを検索できるよー"
         searchBar.delegate = self
     }
     
