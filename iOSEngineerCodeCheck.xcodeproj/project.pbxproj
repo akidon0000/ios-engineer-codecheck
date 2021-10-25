@@ -11,6 +11,7 @@
 		1A3E2139272034C100B4B138 /* DetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A3E2138272034C100B4B138 /* DetailView.storyboard */; };
 		1A3E214127224F6E00B4B138 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3E214027224F6E00B4B138 /* ApiManager.swift */; };
 		1A3E214527229A3B00B4B138 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3E214427229A3B00B4B138 /* SearchViewModel.swift */; };
+		1AA373362726ED740075356E /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA373352726ED740075356E /* UIImageView.swift */; };
 		1AAA6FEC27240EBB00340295 /* AKLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAA6FEB27240EBB00340295 /* AKLibrary.swift */; };
 		1AAA6FEF27240F4D00340295 /* ApiRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAA6FEE27240F4D00340295 /* ApiRepository.swift */; };
 		1AAA6FF327245A2600340295 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAA6FF127245A2600340295 /* SearchTableViewCell.swift */; };
@@ -54,6 +55,7 @@
 		1A3E2138272034C100B4B138 /* DetailView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailView.storyboard; sourceTree = "<group>"; };
 		1A3E214027224F6E00B4B138 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		1A3E214427229A3B00B4B138 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		1AA373352726ED740075356E /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		1AAA6FEB27240EBB00340295 /* AKLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AKLibrary.swift; sourceTree = "<group>"; };
 		1AAA6FEE27240F4D00340295 /* ApiRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRepository.swift; sourceTree = "<group>"; };
 		1AAA6FF127245A2600340295 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
@@ -186,10 +188,19 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		1AA373342726ED5A0075356E /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				1AA373352726ED740075356E /* UIImageView.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		1AAA6FEA27240EA100340295 /* AKLibrary */ = {
 			isa = PBXGroup;
 			children = (
 				1AAA6FEB27240EBB00340295 /* AKLibrary.swift */,
+				1AA373342726ED5A0075356E /* Extension */,
 			);
 			path = AKLibrary;
 			sourceTree = "<group>";
@@ -554,6 +565,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFD945E3244DC5E80012785A /* SearchViewController.swift in Sources */,
+				1AA373362726ED740075356E /* UIImageView.swift in Sources */,
 				BF0A658D244F2A3B00280FA6 /* DetailViewController.swift in Sources */,
 				1A3E214527229A3B00B4B138 /* SearchViewModel.swift in Sources */,
 				1AAA6FEF27240F4D00340295 /* ApiRepository.swift in Sources */,

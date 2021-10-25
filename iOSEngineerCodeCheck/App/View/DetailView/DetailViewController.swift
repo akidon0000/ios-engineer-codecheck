@@ -38,8 +38,7 @@ final class DetailViewController: UIViewController {
         self.issuesLabel.text = searchViewModel.repos[idx].issues
         self.titleLabel.text = searchViewModel.repos[idx].title
         
-        let common = Common()
-        self.imageView.image = common.getImageByUrl(urlString: searchViewModel.repos[idx].imageUrl)
+        self.imageView.loadUrl(urlString: searchViewModel.repos[idx].imageUrl)
         self.viewModel.displayReadMe(ownerName: searchViewModel.repos[idx].ownerName, repoName: searchViewModel.repos[idx].repoName)
     }
     /// ViewModel初期化

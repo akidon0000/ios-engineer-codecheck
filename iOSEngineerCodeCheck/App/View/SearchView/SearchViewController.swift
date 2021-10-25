@@ -95,7 +95,6 @@ class SearchViewController: UITableViewController {
 extension  SearchViewController: UISearchBarDelegate {
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        //        searchBar.text = ""
         return true
     }
     

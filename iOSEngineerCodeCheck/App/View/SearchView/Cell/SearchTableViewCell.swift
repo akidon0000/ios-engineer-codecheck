@@ -39,8 +39,7 @@ extension SearchTableViewCell {
     }
     
     func setUI(repo: SearchViewModel.Repo) {
-        let common = Common()
-        self.imgView.image = common.getImageByUrl(urlString: repo.imageUrl)
+        self.imgView.loadUrl(urlString: repo.imageUrl)
         self.userNameLabel.text = repo.ownerName
         self.repoNameLabel.text = repo.repoName
         self.descriptionLabel.text = repo.desc
