@@ -21,6 +21,7 @@ class SearchViewController: UITableViewController {
         setup()
         initViewModel()
         generateActivityIndicator()
+        setupTableView()
     }
     
     private func setup() {
@@ -28,23 +29,25 @@ class SearchViewController: UITableViewController {
         searchBar.delegate = self
     }
     
+    private func setupTableView() {
+        tableView.dataSource = self
+        tableView.register(UINib(nibName: "SearchTableViewCell", bundle: nil), forCellReuseIdentifier: "SearchTableViewCell")
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.repos.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let tableCell = UITableViewCell()
-        let detailRepo = viewModel.repos[indexPath.row]
-        tableCell.textLabel?.text = detailRepo.title
-        tableCell.detailTextLabel?.text = detailRepo.lang
-        tableCell.tag = indexPath.row
-        return tableCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchTableViewCell", for: indexPath) as? SearchTableViewCell else { return UITableViewCell() }
+        cell.setUI(repo: self.viewModel.repos[indexPath.row])
+        return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.tappedCellIndex = indexPath.row
         let vc = R.storyboard.detailView.detailViewVC()!
-        vc.viewModel = self.viewModel
+        vc.searchViewModel = self.viewModel
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

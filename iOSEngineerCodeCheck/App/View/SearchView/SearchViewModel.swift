@@ -25,6 +25,10 @@ class SearchViewModel: NSObject {
         var issues = ""
         var title = ""
         var imageUrl = ""
+        var ownerName = ""
+        var repoName = ""
+        var desc = ""
+        var lastUpdate = ""
     }
     
     var repos:[Repo] = []
@@ -44,7 +48,7 @@ class SearchViewModel: NSObject {
                                     for row in response.items {
                                         let re = Repo()
                                         if let lang = row.language {
-                                            re.lang = "Written in \(lang)"
+                                            re.lang = lang//"Written in \(lang)"
                                         } else {
                                             re.lang = "Language None"
                                         }
@@ -58,7 +62,12 @@ class SearchViewModel: NSObject {
                                         re.watchers = "\(row.watchersCount ?? 0) watchers"
                                         re.forks = "\(row.forksCount ?? 0) forks"
                                         re.issues = "\(row.openIssuesCount ?? 0) open issues"
-                                        re.imageUrl = row.avatarImageUrl?.absoluteString ?? "NoImage"
+                                        re.imageUrl = row.owner?.avatarUrl ?? "NoImage"
+                                        
+                                        re.ownerName = row.owner?.login ?? "None"
+                                        re.repoName = row.name ?? "None"
+                                        re.desc = row.description ?? "None"
+                                        re.lastUpdate = self.timeLag(row.pushedAt)
                                         self.repos.append(re)
                                     }
                                     self.state?(.ready) // 通信完了
@@ -69,5 +78,36 @@ class SearchViewModel: NSObject {
                                     self?.state?(.error) // エラー表示
                                    }
         )
+    }
+    private func timeLag(_ updatedAt: String?) -> String{
+        let now = Date()
+        let formatter = ISO8601DateFormatter()
+
+        guard let updated = updatedAt,
+              let date = formatter.date(from: updated) else {
+            return "None"
+        }
+
+        let text = "Updated " + timeSpanText(timeSpan: now.timeIntervalSince(date))
+        return text
+    }
+
+    private func timeSpanText(timeSpan: TimeInterval) -> String{
+        var span = Int(timeSpan) / 60 // 最終アップロードとの差「分」
+        if span < 60 { // 0分〜59分
+            return "\(String(span)) minutes ago"
+
+        } else if span < 60 * 24 { // 1時間〜24時間
+            span = span / 60
+            return "\(String(span)) hours ago"
+
+        } else if span < 60 * 24 * 365 { // 1日〜365日
+            span = span / (60 * 24)
+            return "\(String(span)) days ago"
+
+        } else { // 1年〜
+            span = span / (60 * 24 * 365)
+            return "\(String(span)) years ago"
+        }
     }
 }
