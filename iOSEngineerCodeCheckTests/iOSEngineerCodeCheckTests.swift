@@ -34,8 +34,4 @@ class iOSEngineerCodeCheckTests: XCTestCase {
                                     failure: {_ in })
         wait(for: [exp], timeout: 10.0)
     }
-    
-
-
-
 }

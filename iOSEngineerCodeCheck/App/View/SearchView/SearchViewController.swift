@@ -50,23 +50,6 @@ class SearchViewController: UITableViewController {
         vc.searchViewModel = self.viewModel
         self.navigationController?.pushViewController(vc, animated: true)
     }
-}
-
-extension  SearchViewController: UISearchBarDelegate {
-
-    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        searchBar.text = ""
-        return true
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let text = searchBar.text else { return }
-        viewModel.searchText(text)
-    }
-    
     /// ViewModel初期化
     private func initViewModel() {
         // Protocol： ViewModelが変化したことの通知を受けて画面を更新する
@@ -79,14 +62,14 @@ extension  SearchViewController: UISearchBarDelegate {
                 case .busy: // 通信中
                     self.activityIndicator.startAnimating()
                     break
-
+                    
                 case .ready: // 通信完了
                     self.activityIndicator.stopAnimating()
                     // View更新
                     self.tableView.reloadData()
                     break
-                
-                
+                    
+                    
                 case .error:
                     break
                     
@@ -104,5 +87,21 @@ extension  SearchViewController: UISearchBarDelegate {
         activityIndicator.color = UIColor(red: 13/255, green: 169/255, blue: 251/255, alpha: 1)
         activityIndicator.hidesWhenStopped = true // クルクルをストップした時に非表示する
         self.view.addSubview(activityIndicator)
+    }
+}
+
+extension  SearchViewController: UISearchBarDelegate {
+    
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        //        searchBar.text = ""
+        return true
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let text = searchBar.text else { return }
+        viewModel.searchText(text)
     }
 }

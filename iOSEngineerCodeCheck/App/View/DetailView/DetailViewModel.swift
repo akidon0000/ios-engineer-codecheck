@@ -34,11 +34,11 @@ class DetailViewModel: NSObject {
                                     }
                                     
                                     self.state?(.ready) // 通信完了
-                                   },
-                                   
-                                   failure: { [weak self] (error) in
+                                 },
+                                 
+                                 failure: { [weak self] (error) in
                                     AKLog(level: .ERROR, message: "[API] userUpdate: failure:\(error.localizedDescription)")
                                     self?.state?(.error) // エラー表示
-                                   })
+                                 })
     }
 }

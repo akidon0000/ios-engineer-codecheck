@@ -29,7 +29,7 @@ final class DetailViewController: UIViewController {
         initViewModel()
     }
     
-    private func refresh(){
+    private func refresh() {
         let idx = searchViewModel.tappedCellIndex
         self.languageLabel.text = searchViewModel.repos[idx].lang
         self.starsLabel.text = searchViewModel.repos[idx].stars
@@ -37,6 +37,7 @@ final class DetailViewController: UIViewController {
         self.forksLabel.text = searchViewModel.repos[idx].forks
         self.issuesLabel.text = searchViewModel.repos[idx].issues
         self.titleLabel.text = searchViewModel.repos[idx].title
+        
         let common = Common()
         self.imageView.image = common.getImageByUrl(urlString: searchViewModel.repos[idx].imageUrl)
         self.viewModel.displayReadMe(ownerName: searchViewModel.repos[idx].ownerName, repoName: searchViewModel.repos[idx].repoName)
@@ -51,18 +52,18 @@ final class DetailViewController: UIViewController {
             DispatchQueue.main.async {
                 switch state {
                 case .busy: // 通信中
-//                    self.activityIndicator.startAnimating()
+                    // self.activityIndicator.startAnimating()
                     break
-
+                    
                 case .ready: // 通信完了
-//                    self.activityIndicator.stopAnimating()
+                    // self.activityIndicator.stopAnimating()
                     // ReadMe書き込み
                     self.mdView.frame = self.view.bounds
                     self.mdView.load(markdown: self.viewModel.markdownReadMe)
-//                    self.view.addSubview(self.mdView)
+                    // self.view.addSubview(self.mdView)
                     break
-                
-                
+                    
+                    
                 case .error:
                     break
                     

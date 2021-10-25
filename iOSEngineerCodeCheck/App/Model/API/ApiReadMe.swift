@@ -16,6 +16,7 @@ extension ApiManager {
                   failure: @escaping (_ error: ApiError) -> ()) {
         
         AKLog(level: .DEBUG, message: "\(urlString)")
+        
         Alamofire.request(urlString).response { response in
             guard let data = response.data else {
                 failure(ApiError.none)

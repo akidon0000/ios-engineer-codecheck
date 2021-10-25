@@ -71,21 +71,21 @@ class ApiManager: NSObject {
     
     // MARK: - Public value
     static let singleton = ApiManager() // シングルトン・インタンス
-
+    
     // ネットワーク接続状態
     private var isConnected = false
     
     /// シングルトン・インスタンスの初期処理
     private override init() {  //シングルトン保証// privateにすることにより他から初期化させない
         super.init()
-
+        
         // ネットワーク接続状態のモニタリング
         let monitor = NWPathMonitor()
         monitor.pathUpdateHandler = { [weak self] path in
             if path.status == .satisfied {
                 // Connect
                 self?.isConnected = true
-            }else{
+            } else {
                 // Disconnect
                 self?.isConnected = false
             }

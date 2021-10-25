@@ -49,6 +49,7 @@ extension SearchTableViewCell {
         setLanguageIconColor(language: repo.lang)
         self.lastUpdate.text = repo.lastUpdate
     }
+    
     private func setLanguageIconColor(language: String?) {
         guard let language = language else { return }
         switch language {
