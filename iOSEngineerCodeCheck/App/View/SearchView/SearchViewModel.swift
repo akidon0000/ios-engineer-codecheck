@@ -37,6 +37,7 @@ class SearchViewModel: NSObject {
     
     func searchText(_ text: String) {
         state?(.busy) // 通信開始（通信中）
+        
         // API送信する
         self.apiManager.searchRepository(text,
                                          success: { [weak self] (response) in
@@ -44,11 +45,13 @@ class SearchViewModel: NSObject {
                                                 AKLog(level: .FATAL, message: "[self] FatalError")
                                                 fatalError()
                                             }
+                                            
                                             self.repos.removeAll()
+                                            
                                             for row in response.items {
                                                 let re = Repo()
                                                 if let lang = row.language {
-                                                    re.lang = lang//"Written in \(lang)"
+                                                    re.lang = lang // "Written in \(lang)"
                                                 } else {
                                                     re.lang = "Language None"
                                                 }
@@ -63,11 +66,11 @@ class SearchViewModel: NSObject {
                                                 re.forks = "\(row.forksCount ?? 0) forks"
                                                 re.issues = "\(row.openIssuesCount ?? 0) open issues"
                                                 re.imageUrl = row.owner?.avatarUrl ?? "NoImage"
-                                                
                                                 re.ownerName = row.owner?.login ?? "None"
                                                 re.repoName = row.name ?? "None"
                                                 re.desc = row.description ?? "None"
                                                 re.lastUpdate = self.timeLag(row.pushedAt)
+                                                
                                                 self.repos.append(re)
                                             }
                                             self.state?(.ready) // 通信完了
@@ -79,6 +82,7 @@ class SearchViewModel: NSObject {
                                          }
         )
     }
+    
     private func timeLag(_ updatedAt: String?) -> String {
         let now = Date()
         let formatter = ISO8601DateFormatter()

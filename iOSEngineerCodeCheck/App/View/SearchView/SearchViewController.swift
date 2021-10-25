@@ -33,23 +33,6 @@ class SearchViewController: UITableViewController {
         tableView.dataSource = self
         tableView.register(UINib(nibName: "SearchTableViewCell", bundle: nil), forCellReuseIdentifier: "SearchTableViewCell")
     }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.repos.count
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchTableViewCell", for: indexPath) as? SearchTableViewCell else { return UITableViewCell() }
-        cell.setUI(repo: self.viewModel.repos[indexPath.row])
-        return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.tappedCellIndex = indexPath.row
-        let vc = R.storyboard.detailView.detailViewVC()!
-        vc.searchViewModel = self.viewModel
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
     /// ViewModel初期化
     private func initViewModel() {
         // Protocol： ViewModelが変化したことの通知を受けて画面を更新する
@@ -87,6 +70,25 @@ class SearchViewController: UITableViewController {
         activityIndicator.color = UIColor(red: 13/255, green: 169/255, blue: 251/255, alpha: 1)
         activityIndicator.hidesWhenStopped = true // クルクルをストップした時に非表示する
         self.view.addSubview(activityIndicator)
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.repos.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchTableViewCell", for: indexPath) as? SearchTableViewCell else {
+            return UITableViewCell()
+        }
+        cell.setUI(repo: self.viewModel.repos[indexPath.row])
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.tappedCellIndex = indexPath.row
+        let vc = R.storyboard.detailView.detailViewVC()!
+        vc.searchViewModel = self.viewModel
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

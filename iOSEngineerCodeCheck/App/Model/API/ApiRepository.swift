@@ -17,46 +17,29 @@ extension ApiManager {
     }
     
     struct Repository: Decodable {
-        /// リポジトリ名
-        let name: String?
-        /// オーナー名+リポジトリ名
-        let fullName: String?
-        /// リポジトリ言語
-        let language: String?
-        /// スター数
-        let stargazersCount: Int?
-        /// ウォッチ数
-        let watchersCount: Int?
-        /// フォーク数
-        let forksCount: Int?
-        /// イシュー数
-        let openIssuesCount: Int?
-        /// 説明文
-        let description: String?
-        /// ホームページ
-        let homePage: String?
-        /// 更新日
-        let pushedAt: String?
-        /// オーナー情報
-        let owner: Owner?
-        ///　ライセンス情報
-        let license: License?
+        let name: String?         // リポジトリ名
+        let fullName: String?     // オーナー名+リポジトリ名
+        let language: String?     // リポジトリ言語
+        let stargazersCount: Int? // スター数
+        let watchersCount: Int?   // ウォッチ数
+        let forksCount: Int?      // フォーク数
+        let openIssuesCount: Int? // イシュー数
+        let description: String?  // 説明文
+        let homePage: String?     // ホームページ
+        let pushedAt: String?     // 更新日
+        let owner: Owner?         // オーナー情報
+        let license: License?     // ライセンス情報
     }
     
     struct Owner: Decodable {
-        /// 名前
-        let login: String?
-        /// アバター画像URL
-        let avatarUrl: String?
+        let login: String?        // 名前
+        let avatarUrl: String?    // アバター画像URL
     }
     
     struct License: Decodable {
-        /// キー
-        let key: String?
-        /// 名前
-        let name: String?
-        /// URL
-        let url: String?
+        let key: String?          // キー
+        let name: String?         // 名前
+        let url: String?          // URL
     }
     
     func searchRepository(_ text: String,
@@ -71,7 +54,7 @@ extension ApiManager {
         AKLog(level: .DEBUG, message: "[API] URL:\n\(url)")
         
         // タイムアウト設定
-        manager.session.configuration.timeoutIntervalForRequest = API_TIMEOUT // リクエスト開始まで
+        manager.session.configuration.timeoutIntervalForRequest = API_TIMEOUT           // リクエスト開始まで
         manager.session.configuration.timeoutIntervalForResource = API_RESPONSE_TIMEOUT // リクエスト開始からレスポンス終了まで
         
         manager.request(url,
@@ -80,9 +63,11 @@ extension ApiManager {
                         headers: headers).responseJSON { response in
                             
                             AKLog(level: .DEBUG, message: "[API] HttpStatus:\(String(describing: response.response?.statusCode ?? 0))")
+                            
                             switch (response.result) {
                             // 通信ステータス:OK
                             case .success:
+                                
                                 guard let jsonData = response.data else {
                                     AKLog(level: .ERROR, message: "[API] BadResponse")
                                     failure(ApiError.badResponse)
@@ -125,10 +110,5 @@ extension ApiManager {
                                 }
                             }
                         }
-    }
-    static private var jsonStrategyDecoder: JSONDecoder {
-        let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        return decoder
     }
 }
