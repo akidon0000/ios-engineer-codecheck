@@ -51,6 +51,13 @@ extension SearchTableViewCell {
     }
     private func setLanguageIconColor(language: String?) {
         guard let language = language else { return }
-        self.languageIconView.backgroundColor = LanguageIcon(language: language).color
+        switch language {
+        case "Swift":
+            self.languageIconView.backgroundColor = UIColor.red
+        case "Python":
+            self.languageIconView.backgroundColor = UIColor.blue
+        default:
+            self.languageIconView.backgroundColor = UIColor.gray
+        }
     }
 }
