@@ -10,19 +10,31 @@ import UIKit
 
 extension UIImageView {
     
-    /// 画像をURLより読み込んで表示する(**非同期にするべき**)
+    /// 画像をURLより読み込んで表示する(非同期)
     func loadUrl(urlString: String) {
         self.image = nil
         guard let url = URL(string: urlString) else {
             AKLog(level: .WARN, message: "NoImage")
             return
         }
-        do {
-            let data = try Data(contentsOf: url)
-            self.image = UIImage(data: data)
-        } catch let err {
-            AKLog(level: .WARN, message: "NoImage: \(err)")
-            return
+        DispatchQueue.global().async {
+            do {
+                let imageData: Data? = try Data(contentsOf: url)
+                DispatchQueue.main.async {
+                    if let data = imageData {
+                        self.image = UIImage(data: data)
+                    } else {
+//                        self.image = defaultUIImage
+                        return
+                    }
+                }
+            }
+            catch {
+                DispatchQueue.main.async {
+//                    self.image = defaultUIImage
+                    return
+                }
+            }
         }
     }
     
