@@ -122,7 +122,11 @@ extension DataRequest {
                     timeline: self.timeline
                 )
 
-                dataResponse.add(self.delegate.metrics)
+                if #available(iOS 10.0, *) {
+                    dataResponse.add(self.delegate.metrics)
+                } else {
+                    // Fallback on earlier versions
+                }
 
                 completionHandler(dataResponse)
             }
@@ -162,7 +166,11 @@ extension DataRequest {
                 timeline: self.timeline
             )
 
-            dataResponse.add(self.delegate.metrics)
+            if #available(iOS 10.0, *) {
+                dataResponse.add(self.delegate.metrics)
+            } else {
+                // Fallback on earlier versions
+            }
 
             (queue ?? DispatchQueue.main).async { completionHandler(dataResponse) }
         }
@@ -196,7 +204,11 @@ extension DownloadRequest {
                     timeline: self.timeline
                 )
 
-                downloadResponse.add(self.delegate.metrics)
+                if #available(iOS 10.0, *) {
+                    downloadResponse.add(self.delegate.metrics)
+                } else {
+                    // Fallback on earlier versions
+                }
 
                 completionHandler(downloadResponse)
             }
@@ -238,7 +250,11 @@ extension DownloadRequest {
                 timeline: self.timeline
             )
 
-            downloadResponse.add(self.delegate.metrics)
+            if #available(iOS 10.0, *) {
+                downloadResponse.add(self.delegate.metrics)
+            } else {
+                // Fallback on earlier versions
+            }
 
             (queue ?? DispatchQueue.main).async { completionHandler(downloadResponse) }
         }
