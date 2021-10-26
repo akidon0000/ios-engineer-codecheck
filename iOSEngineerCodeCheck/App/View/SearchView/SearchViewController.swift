@@ -107,6 +107,7 @@ class SearchViewController: BaseViewController, UITableViewDelegate, UITableView
         vc.searchViewModel = self.viewModel
         self.navigationController?.pushViewController(vc, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
+        self.searchBar.resignFirstResponder()
     }
 }
 
