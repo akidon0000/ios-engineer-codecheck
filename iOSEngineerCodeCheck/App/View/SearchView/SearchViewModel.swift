@@ -60,6 +60,17 @@ class SearchViewModel: NSObject {
                                                 } else {
                                                     re.title = "Title None"
                                                 }
+                                                if let desc = row.description {
+                                                    if desc.count < 100 { // 説明文が100文字超えていたら省略
+                                                        re.desc = desc
+                                                        
+                                                    } else {
+                                                        re.desc = "\(desc.prefix(100))..."
+                                                    }
+                                                    
+                                                } else {
+                                                    re.desc = "None"
+                                                }
                                                 
                                                 re.stars = "\(row.stargazersCount ?? 0) stars"
                                                 re.watchers = "\(row.watchersCount ?? 0) watchers"
@@ -68,7 +79,7 @@ class SearchViewModel: NSObject {
                                                 re.imageUrl = row.owner?.avatarUrl ?? "NoImage"
                                                 re.ownerName = row.owner?.login ?? "None"
                                                 re.repoName = row.name ?? "None"
-                                                re.desc = row.description ?? "None"
+                                                
                                                 re.lastUpdate = self.timeLag(row.pushedAt)
                                                 
                                                 self.repos.append(re)
