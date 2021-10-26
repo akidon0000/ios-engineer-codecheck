@@ -31,7 +31,7 @@ final class DetailViewController: BaseViewController {
     
     private func refresh() {
         let idx = searchViewModel.tappedCellIndex
-        self.languageLabel.text = searchViewModel.repos[idx].lang
+        self.languageLabel.text = "Written in \(searchViewModel.repos[idx].lang)"
         self.starsLabel.text = searchViewModel.repos[idx].stars
         self.watchersLabel.text = searchViewModel.repos[idx].watchers
         self.forksLabel.text = searchViewModel.repos[idx].forks
