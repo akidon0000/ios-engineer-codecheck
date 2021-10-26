@@ -91,6 +91,7 @@ class SearchViewController: BaseViewController, UITableViewDelegate, UITableView
         let vc = R.storyboard.detailView.detailViewVC()!
         vc.searchViewModel = self.viewModel
         self.navigationController?.pushViewController(vc, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
