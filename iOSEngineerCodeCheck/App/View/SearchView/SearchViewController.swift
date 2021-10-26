@@ -8,12 +8,13 @@
 
 import UIKit
 
-class SearchViewController: UITableViewController {
+class SearchViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {//UITableViewController {
     
+    @IBOutlet var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
     var viewModel = SearchViewModel()
-    var activityIndicator: UIActivityIndicatorView!
+//    var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +31,8 @@ class SearchViewController: UITableViewController {
     }
     
     private func setupTableView() {
-        tableView.dataSource = self
+        
+//        tableView.dataSource = self
         tableView.register(UINib(nibName: "SearchTableViewCell", bundle: nil), forCellReuseIdentifier: "SearchTableViewCell")
     }
     /// ViewModel初期化
@@ -72,11 +74,11 @@ class SearchViewController: UITableViewController {
         self.view.addSubview(activityIndicator)
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.repos.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchTableViewCell", for: indexPath) as? SearchTableViewCell else {
             return UITableViewCell()
         }
@@ -84,7 +86,7 @@ class SearchViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.tappedCellIndex = indexPath.row
         let vc = R.storyboard.detailView.detailViewVC()!
         vc.searchViewModel = self.viewModel

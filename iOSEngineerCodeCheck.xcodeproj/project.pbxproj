@@ -12,6 +12,7 @@
 		1A3E214127224F6E00B4B138 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3E214027224F6E00B4B138 /* ApiManager.swift */; };
 		1A3E214527229A3B00B4B138 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3E214427229A3B00B4B138 /* SearchViewModel.swift */; };
 		1AA373362726ED740075356E /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA373352726ED740075356E /* UIImageView.swift */; };
+		1AA373392727983F0075356E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA373382727983F0075356E /* BaseViewController.swift */; };
 		1AAA6FEC27240EBB00340295 /* AKLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAA6FEB27240EBB00340295 /* AKLibrary.swift */; };
 		1AAA6FEF27240F4D00340295 /* ApiRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAA6FEE27240F4D00340295 /* ApiRepository.swift */; };
 		1AAA6FF327245A2600340295 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAA6FF127245A2600340295 /* SearchTableViewCell.swift */; };
@@ -56,6 +57,7 @@
 		1A3E214027224F6E00B4B138 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		1A3E214427229A3B00B4B138 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		1AA373352726ED740075356E /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
+		1AA373382727983F0075356E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		1AAA6FEB27240EBB00340295 /* AKLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AKLibrary.swift; sourceTree = "<group>"; };
 		1AAA6FEE27240F4D00340295 /* ApiRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRepository.swift; sourceTree = "<group>"; };
 		1AAA6FF127245A2600340295 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 		1A3E212E272031FB00B4B138 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				1AA373372727982B0075356E /* Base */,
 				1AAA6FF5272511CF00340295 /* Static */,
 				1AAA6FEA27240EA100340295 /* AKLibrary */,
 				1A3E2135272032A900B4B138 /* etc */,
@@ -194,6 +197,14 @@
 				1AA373352726ED740075356E /* UIImageView.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		1AA373372727982B0075356E /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				1AA373382727983F0075356E /* BaseViewController.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 		1AAA6FEA27240EA100340295 /* AKLibrary */ = {
@@ -569,6 +580,7 @@
 				BF0A658D244F2A3B00280FA6 /* DetailViewController.swift in Sources */,
 				1A3E214527229A3B00B4B138 /* SearchViewModel.swift in Sources */,
 				1AAA6FEF27240F4D00340295 /* ApiRepository.swift in Sources */,
+				1AA373392727983F0075356E /* BaseViewController.swift in Sources */,
 				1AAA6FF7272511EB00340295 /* Common.swift in Sources */,
 				1AAA6FEC27240EBB00340295 /* AKLibrary.swift in Sources */,
 				1AAA6FF927256E9E00340295 /* ApiReadMe.swift in Sources */,

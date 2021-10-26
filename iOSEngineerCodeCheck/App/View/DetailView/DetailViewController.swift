@@ -9,7 +9,7 @@
 import UIKit
 import MarkdownView
 
-final class DetailViewController: UIViewController {
+final class DetailViewController: BaseViewController {
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
