@@ -59,7 +59,7 @@ final class DetailViewController: UIViewController {
                     // ReadMe書き込み
                     self.mdView.frame = self.view.bounds
                     self.mdView.load(markdown: self.viewModel.markdownReadMe)
-                    // self.view.addSubview(self.mdView)
+//                     self.view.addSubview(self.mdView)
                     break
                     
                     

@@ -104,7 +104,7 @@ extension ApiManager {
                                     // case 500:   // サーバー内エラー
                                     // case 503:   // サービス利用不可
                                     default:
-                                        AKLog(level: .ERROR, message: "[API] unknown: \(error)")
+                                        AKLog(level: .ERROR, message: "[API] HTTPError ステータス: \(String(describing: response.response?.statusCode))")
                                         failure(ApiError.unknown("unknown: \(error)"))
                                     }
                                 }
