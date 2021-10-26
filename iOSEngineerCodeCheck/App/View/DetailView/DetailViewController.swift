@@ -9,7 +9,7 @@
 import UIKit
 import MarkdownView
 
-final class DetailViewController: UIViewController {
+final class DetailViewController: BaseViewController {
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -28,17 +28,22 @@ final class DetailViewController: UIViewController {
         refresh()
         initViewModel()
     }
+    @IBAction func readMeButton(_ sender: Any) {
+        let vc = R.storyboard.readMeView.readMeView()!
+        vc.viewModel = self.viewModel
+        self.present(vc, animated: true, completion: nil)
+    }
     
-    private func refresh(){
+    private func refresh() {
         let idx = searchViewModel.tappedCellIndex
-        self.languageLabel.text = searchViewModel.repos[idx].lang
+        self.languageLabel.text = "Written in \(searchViewModel.repos[idx].lang)"
         self.starsLabel.text = searchViewModel.repos[idx].stars
         self.watchersLabel.text = searchViewModel.repos[idx].watchers
         self.forksLabel.text = searchViewModel.repos[idx].forks
         self.issuesLabel.text = searchViewModel.repos[idx].issues
         self.titleLabel.text = searchViewModel.repos[idx].title
-        let common = Common()
-        self.imageView.image = common.getImageByUrl(urlString: searchViewModel.repos[idx].imageUrl)
+        
+        self.imageView.loadUrl(urlString: searchViewModel.repos[idx].imageUrl)
         self.viewModel.displayReadMe(ownerName: searchViewModel.repos[idx].ownerName, repoName: searchViewModel.repos[idx].repoName)
     }
     /// ViewModel初期化
@@ -51,18 +56,16 @@ final class DetailViewController: UIViewController {
             DispatchQueue.main.async {
                 switch state {
                 case .busy: // 通信中
-//                    self.activityIndicator.startAnimating()
                     break
-
+                    
                 case .ready: // 通信完了
-//                    self.activityIndicator.stopAnimating()
                     // ReadMe書き込み
                     self.mdView.frame = self.view.bounds
                     self.mdView.load(markdown: self.viewModel.markdownReadMe)
-//                    self.view.addSubview(self.mdView)
+//                     self.view.addSubview(self.mdView)
                     break
-                
-                
+                    
+                    
                 case .error:
                     break
                     

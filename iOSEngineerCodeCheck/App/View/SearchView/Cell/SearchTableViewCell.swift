@@ -39,16 +39,16 @@ extension SearchTableViewCell {
     }
     
     func setUI(repo: SearchViewModel.Repo) {
-        let common = Common()
-        self.imgView.image = common.getImageByUrl(urlString: repo.imageUrl)
+        self.imgView.loadUrl(urlString: repo.imageUrl)
         self.userNameLabel.text = repo.ownerName
         self.repoNameLabel.text = repo.repoName
         self.descriptionLabel.text = repo.desc
         self.starLabel.text = repo.stars
         self.languageLabel.text = repo.lang
-        setLanguageIconColor(language: repo.lang)
         self.lastUpdate.text = repo.lastUpdate
+        setLanguageIconColor(language: repo.lang)
     }
+    
     private func setLanguageIconColor(language: String?) {
         guard let language = language else { return }
         switch language {

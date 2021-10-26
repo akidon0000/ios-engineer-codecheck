@@ -37,77 +37,105 @@ class SearchViewModel: NSObject {
     
     func searchText(_ text: String) {
         state?(.busy) // 通信開始（通信中）
+        
         // API送信する
         self.apiManager.searchRepository(text,
-                                   success: { [weak self] (response) in
-                                    guard let self = self else { // SearchViewModelのself
-                                        AKLog(level: .FATAL, message: "[self] FatalError")
-                                        fatalError()
-                                    }
-                                    self.repos.removeAll()
-                                    for row in response.items {
-                                        let re = Repo()
-                                        if let lang = row.language {
-                                            re.lang = lang//"Written in \(lang)"
-                                        } else {
-                                            re.lang = "Language None"
-                                        }
-                                        if let fullName = row.fullName {
-                                            re.title = fullName
-                                        } else {
-                                            re.title = "Title None"
-                                        }
-                                        
-                                        re.stars = "\(row.stargazersCount ?? 0) stars"
-                                        re.watchers = "\(row.watchersCount ?? 0) watchers"
-                                        re.forks = "\(row.forksCount ?? 0) forks"
-                                        re.issues = "\(row.openIssuesCount ?? 0) open issues"
-                                        re.imageUrl = row.owner?.avatarUrl ?? "NoImage"
-                                        
-                                        re.ownerName = row.owner?.login ?? "None"
-                                        re.repoName = row.name ?? "None"
-                                        re.desc = row.description ?? "None"
-                                        re.lastUpdate = self.timeLag(row.pushedAt)
-                                        self.repos.append(re)
-                                    }
-                                    self.state?(.ready) // 通信完了
-                                   },
-                                   
-                                   failure: { [weak self] (error) in
-                                    AKLog(level: .ERROR, message: "[API] userUpdate: failure:\(error.localizedDescription)")
-                                    self?.state?(.error) // エラー表示
-                                   }
+                                         success: { [weak self] (response) in
+                                            guard let self = self else { // SearchViewModelのself
+                                                AKLog(level: .FATAL, message: "[self] FatalError")
+                                                fatalError()
+                                            }
+                                            
+                                            self.repos.removeAll()
+                                            
+                                            for row in response.items {
+                                                let re = Repo()
+                                                if let lang = row.language {
+                                                    re.lang = lang 
+                                                } else {
+                                                    re.lang = "None"
+                                                }
+                                                if let fullName = row.fullName {
+                                                    re.title = fullName
+                                                } else {
+                                                    re.title = "Title None"
+                                                }
+                                                if let desc = row.description {
+                                                    if desc.count < 100 { // 説明文が100文字超えていたら省略
+                                                        re.desc = desc
+                                                        
+                                                    } else {
+                                                        re.desc = "\(desc.prefix(100))..."
+                                                    }
+                                                    
+                                                } else {
+                                                    re.desc = "None"
+                                                }
+                                                
+                                                re.stars = "\(row.stargazersCount ?? 0) stars"
+                                                re.watchers = "\(row.watchersCount ?? 0) watchers"
+                                                re.forks = "\(row.forksCount ?? 0) forks"
+                                                re.issues = "\(row.openIssuesCount ?? 0) open issues"
+                                                re.imageUrl = row.owner?.avatarUrl ?? "NoImage"
+                                                re.ownerName = row.owner?.login ?? "None"
+                                                re.repoName = row.name ?? "None"
+                                                
+                                                re.lastUpdate = self.timeLag(row.pushedAt)
+                                                
+                                                self.repos.append(re)
+                                            }
+                                            self.state?(.ready) // 通信完了
+                                         },
+                                         
+                                         failure: { [weak self] (error) in
+                                            AKLog(level: .ERROR, message: "[API] userUpdate: failure:\(error.localizedDescription)")
+                                            self?.state?(.error) // エラー表示
+                                         }
         )
     }
-    private func timeLag(_ updatedAt: String?) -> String{
+    
+    private func timeLag(_ updatedAt: String?) -> String {
         let now = Date()
         let formatter = ISO8601DateFormatter()
-
+        
         guard let updated = updatedAt,
               let date = formatter.date(from: updated) else {
             return "None"
         }
-
+        
         let text = "Updated " + timeSpanText(timeSpan: now.timeIntervalSince(date))
         return text
     }
-
-    private func timeSpanText(timeSpan: TimeInterval) -> String{
-        var span = Int(timeSpan) / 60 // 最終アップロードとの差「分」
-        if span < 60 { // 0分〜59分
-            return "\(String(span)) minutes ago"
-
-        } else if span < 60 * 24 { // 1時間〜24時間
-            span = span / 60
-            return "\(String(span)) hours ago"
-
-        } else if span < 60 * 24 * 365 { // 1日〜365日
-            span = span / (60 * 24)
-            return "\(String(span)) days ago"
-
-        } else { // 1年〜
-            span = span / (60 * 24 * 365)
-            return "\(String(span)) years ago"
+    
+    private func timeSpanText(timeSpan: TimeInterval) -> String {
+        let span = Int(timeSpan) // 秒
+        
+        let seconds = 0
+        let minutes = 60
+        let hours = minutes * 60
+        let days = hours * 24
+        let years = days * 365
+        
+        switch span {
+        case seconds ..< hours: // 0秒〜60分
+            let text = String(span / minutes)
+            return "\(text) minutes ago"
+            
+            
+        case hours ..< days: // 1時間〜24時間
+            let text = String(span / hours)
+            return "\(text) hours ago"
+            
+            
+        case days ..< years: // 1日〜365日
+            let text = String(span / days)
+            return "\(text) days ago"
+            
+            
+        default: // 1年〜
+            let text = String(span / years)
+            return "\(text) years ago"
         }
     }
+    
 }

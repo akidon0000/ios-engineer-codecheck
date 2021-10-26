@@ -1,0 +1,28 @@
+PODS:
+  - Alamofire (4.9.1)
+  - MarkdownView (1.8.3)
+  - R.swift (5.4.0):
+    - R.swift.Library (~> 5.3.0)
+  - R.swift.Library (5.3.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.9.1)
+  - MarkdownView (~> 1.8.3)
+  - R.swift (~> 5.4.0)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - MarkdownView
+    - R.swift
+    - R.swift.Library
+
+SPEC CHECKSUMS:
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  MarkdownView: 44a260beec01538e6cdbbce9c2f631b1f3634907
+  R.swift: c533450b0f7dc494e0993f5f1a1db925d84c3006
+  R.swift.Library: 0fc583cb55a99e28901299cc451614cad1161962
+
+PODFILE CHECKSUM: 658de9fd04e23837688592e31f19290f7ef7d1f5
+
+COCOAPODS: 1.10.1
