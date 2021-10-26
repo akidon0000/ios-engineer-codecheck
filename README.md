@@ -67,7 +67,7 @@
 - Icon画像の非同期ダウンロード
 
 
-##今後やりたいこと
+## 今後やりたいこと
 - DetailViewのUIブラッシュアップ
 - APIの通信で最初に不必要なデータも取得している為、用途にあったAPIを使用
 - LanguageIconのColorを作成（現在はSwift「赤色」とPython「青色」のみ）
