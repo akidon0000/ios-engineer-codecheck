@@ -51,11 +51,9 @@ final class DetailViewController: BaseViewController {
             DispatchQueue.main.async {
                 switch state {
                 case .busy: // 通信中
-                    // self.activityIndicator.startAnimating()
                     break
                     
                 case .ready: // 通信完了
-                    // self.activityIndicator.stopAnimating()
                     // ReadMe書き込み
                     self.mdView.frame = self.view.bounds
                     self.mdView.load(markdown: self.viewModel.markdownReadMe)

@@ -45,8 +45,8 @@ extension SearchTableViewCell {
         self.descriptionLabel.text = repo.desc
         self.starLabel.text = repo.stars
         self.languageLabel.text = repo.lang
-        setLanguageIconColor(language: repo.lang)
         self.lastUpdate.text = repo.lastUpdate
+        setLanguageIconColor(language: repo.lang)
     }
     
     private func setLanguageIconColor(language: String?) {

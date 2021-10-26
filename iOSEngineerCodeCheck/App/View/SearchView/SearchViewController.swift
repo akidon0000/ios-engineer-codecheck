@@ -16,7 +16,6 @@ class SearchViewController: BaseViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var refreshControl: UIRefreshControl!
     
     var viewModel = SearchViewModel()
-//    var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +28,6 @@ class SearchViewController: BaseViewController, UITableViewDelegate, UITableView
     @objc func refresh(sender: UIRefreshControl) {
         // ここが引っ張られるたびに呼び出される
         // 通信終了後、endRefreshingを実行することでロードインジケーター（くるくる）が終了
-//        self.tableView.reloadData()
         guard let text = searchBar.text else { return }
         if text != "" {
             viewModel.searchText(text)
@@ -44,8 +42,6 @@ class SearchViewController: BaseViewController, UITableViewDelegate, UITableView
     }
     
     private func setupTableView() {
-        
-//        tableView.dataSource = self
         tableView.register(UINib(nibName: "SearchTableViewCell", bundle: nil), forCellReuseIdentifier: "SearchTableViewCell")
     }
     /// ViewModel初期化
@@ -66,7 +62,6 @@ class SearchViewController: BaseViewController, UITableViewDelegate, UITableView
                     // View更新
                     self.tableView.reloadData()
                     self.refreshControl.endRefreshing()
-
                     break
                     
                     
