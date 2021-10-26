@@ -28,6 +28,11 @@ final class DetailViewController: BaseViewController {
         refresh()
         initViewModel()
     }
+    @IBAction func readMeButton(_ sender: Any) {
+        let vc = R.storyboard.readMeView.readMeView()!
+        vc.viewModel = self.viewModel
+        self.present(vc, animated: true, completion: nil)
+    }
     
     private func refresh() {
         let idx = searchViewModel.tappedCellIndex

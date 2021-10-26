@@ -11,6 +11,8 @@
 		1A3E2139272034C100B4B138 /* DetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A3E2138272034C100B4B138 /* DetailView.storyboard */; };
 		1A3E214127224F6E00B4B138 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3E214027224F6E00B4B138 /* ApiManager.swift */; };
 		1A3E214527229A3B00B4B138 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3E214427229A3B00B4B138 /* SearchViewModel.swift */; };
+		1A80A26E2727C7C600E783F6 /* ReadMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A80A26D2727C7C600E783F6 /* ReadMeViewController.swift */; };
+		1A80A2702727C7D300E783F6 /* ReadMeView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A80A26F2727C7D300E783F6 /* ReadMeView.storyboard */; };
 		1AA373362726ED740075356E /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA373352726ED740075356E /* UIImageView.swift */; };
 		1AA373392727983F0075356E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA373382727983F0075356E /* BaseViewController.swift */; };
 		1AAA6FEC27240EBB00340295 /* AKLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAA6FEB27240EBB00340295 /* AKLibrary.swift */; };
@@ -55,6 +57,8 @@
 		1A3E2138272034C100B4B138 /* DetailView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailView.storyboard; sourceTree = "<group>"; };
 		1A3E214027224F6E00B4B138 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		1A3E214427229A3B00B4B138 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		1A80A26D2727C7C600E783F6 /* ReadMeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadMeViewController.swift; sourceTree = "<group>"; };
+		1A80A26F2727C7D300E783F6 /* ReadMeView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReadMeView.storyboard; sourceTree = "<group>"; };
 		1AA373352726ED740075356E /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		1AA373382727983F0075356E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		1AAA6FEB27240EBB00340295 /* AKLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AKLibrary.swift; sourceTree = "<group>"; };
@@ -165,6 +169,7 @@
 				1AAA6FFA2725843E00340295 /* DetailViewModel.swift */,
 				BF0A658C244F2A3B00280FA6 /* DetailViewController.swift */,
 				1A3E2138272034C100B4B138 /* DetailView.storyboard */,
+				1A80A26C2727C79C00E783F6 /* ReadMe */,
 			);
 			path = DetailView;
 			sourceTree = "<group>";
@@ -186,6 +191,15 @@
 				1AAA6FED27240F3C00340295 /* API */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		1A80A26C2727C79C00E783F6 /* ReadMe */ = {
+			isa = PBXGroup;
+			children = (
+				1A80A26D2727C7C600E783F6 /* ReadMeViewController.swift */,
+				1A80A26F2727C7D300E783F6 /* ReadMeView.storyboard */,
+			);
+			path = ReadMe;
 			sourceTree = "<group>";
 		};
 		1AA373342726ED5A0075356E /* Extension */ = {
@@ -416,6 +430,7 @@
 				BFD945EB244DC5EB0012785A /* LaunchScreen.storyboard in Resources */,
 				BFD945E8244DC5EB0012785A /* Assets.xcassets in Resources */,
 				1A3E2139272034C100B4B138 /* DetailView.storyboard in Resources */,
+				1A80A2702727C7D300E783F6 /* ReadMeView.storyboard in Resources */,
 				BFD945E6244DC5E80012785A /* SearchView.storyboard in Resources */,
 				1AAA6FF427245A2600340295 /* SearchTableViewCell.xib in Resources */,
 			);
@@ -571,6 +586,7 @@
 				1AAA6FEF27240F4D00340295 /* ApiRepository.swift in Sources */,
 				1AA373392727983F0075356E /* BaseViewController.swift in Sources */,
 				1AAA6FEC27240EBB00340295 /* AKLibrary.swift in Sources */,
+				1A80A26E2727C7C600E783F6 /* ReadMeViewController.swift in Sources */,
 				1AAA6FF927256E9E00340295 /* ApiReadMe.swift in Sources */,
 				1A3E212D272031B300B4B138 /* R.generated.swift in Sources */,
 				BFD945DF244DC5E80012785A /* AppDelegate.swift in Sources */,
