@@ -32,6 +32,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </refreshControl>
                     <connections>
+                        <outlet property="refreshControl" destination="8fZ-FF-p5t" id="yDi-J8-5Gn"/>
                         <outlet property="searchBar" destination="6rq-CD-Hob" id="3gq-mK-4M3"/>
                         <outlet property="tableView" destination="Fpt-Ev-QNW" id="VqT-Qb-jL8"/>
                     </connections>

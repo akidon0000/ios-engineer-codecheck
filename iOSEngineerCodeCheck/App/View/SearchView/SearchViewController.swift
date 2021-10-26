@@ -13,6 +13,8 @@ class SearchViewController: BaseViewController, UITableViewDelegate, UITableView
     @IBOutlet var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
+    @IBOutlet weak var refreshControl: UIRefreshControl!
+    
     var viewModel = SearchViewModel()
 //    var activityIndicator: UIActivityIndicatorView!
     
@@ -24,10 +26,21 @@ class SearchViewController: BaseViewController, UITableViewDelegate, UITableView
         generateActivityIndicator()
         setupTableView()
     }
-    
+    @objc func refresh(sender: UIRefreshControl) {
+        // ここが引っ張られるたびに呼び出される
+        // 通信終了後、endRefreshingを実行することでロードインジケーター（くるくる）が終了
+//        self.tableView.reloadData()
+        guard let text = searchBar.text else { return }
+        if text != "" {
+            viewModel.searchText(text)
+        } else {
+            self.refreshControl.endRefreshing()
+        }
+    }
     private func setup() {
         searchBar.placeholder = "GitHubのリポジトリを検索できるよー"
         searchBar.delegate = self
+        refreshControl.addTarget(self, action: #selector(SearchViewController.refresh(sender:)), for: .valueChanged)
     }
     
     private func setupTableView() {
@@ -52,6 +65,8 @@ class SearchViewController: BaseViewController, UITableViewDelegate, UITableView
                     self.activityIndicator.stopAnimating()
                     // View更新
                     self.tableView.reloadData()
+                    self.refreshControl.endRefreshing()
+
                     break
                     
                     
