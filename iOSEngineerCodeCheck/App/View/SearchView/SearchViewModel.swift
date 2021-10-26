@@ -97,21 +97,34 @@ class SearchViewModel: NSObject {
     }
     
     private func timeSpanText(timeSpan: TimeInterval) -> String {
-        var span = Int(timeSpan) / 60 // 最終アップロードとの差「分」
-        if span < 60 { // 0分〜59分
-            return "\(String(span)) minutes ago"
+        let span = Int(timeSpan) // 秒
+        
+        let seconds = 0
+        let minutes = 60
+        let hours = minutes * 60
+        let days = hours * 24
+        let years = days * 365
+        
+        switch span {
+        case seconds ..< hours: // 0秒〜60分
+            let text = String(span / minutes)
+            return "\(text) minutes ago"
             
-        } else if span < 60 * 24 { // 1時間〜24時間
-            span = span / 60
-            return "\(String(span)) hours ago"
             
-        } else if span < 60 * 24 * 365 { // 1日〜365日
-            span = span / (60 * 24)
-            return "\(String(span)) days ago"
+        case hours ..< days: // 1時間〜24時間
+            let text = String(span / hours)
+            return "\(text) hours ago"
             
-        } else { // 1年〜
-            span = span / (60 * 24 * 365)
-            return "\(String(span)) years ago"
+            
+        case days ..< years: // 1日〜365日
+            let text = String(span / days)
+            return "\(text) days ago"
+            
+            
+        default: // 1年〜
+            let text = String(span / years)
+            return "\(text) years ago"
         }
     }
+    
 }
