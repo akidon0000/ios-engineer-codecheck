@@ -136,20 +136,12 @@
 		1A3E21312720325400B4B138 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				1A3E21322720326600B4B138 /* AppDelegate */,
+				BFD945DE244DC5E80012785A /* AppDelegate.swift */,
+				BFD945E0244DC5E80012785A /* SceneDelegate.swift */,
 				1A3E21332720327600B4B138 /* SearchView */,
 				1A3E21342720328C00B4B138 /* DetailView */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		1A3E21322720326600B4B138 /* AppDelegate */ = {
-			isa = PBXGroup;
-			children = (
-				BFD945DE244DC5E80012785A /* AppDelegate.swift */,
-				BFD945E0244DC5E80012785A /* SceneDelegate.swift */,
-			);
-			path = AppDelegate;
 			sourceTree = "<group>";
 		};
 		1A3E21332720327600B4B138 /* SearchView */ = {
