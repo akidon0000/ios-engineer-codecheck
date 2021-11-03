@@ -33,7 +33,7 @@ final class SearchViewModel: NSObject {
     
     var repos:[Repo] = []
     var tappedCellIndex = 0
-    let apiManager = ApiManager.singleton
+    private let apiManager = ApiManager.singleton
     
     func searchText(_ text: String) {
         state?(.busy) // 通信開始（通信中）

@@ -8,14 +8,14 @@
 
 import UIKit
 
-final class SearchViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {//UITableViewController {
+final class SearchViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
     @IBOutlet weak var refreshControl: UIRefreshControl!
     
-    var viewModel = SearchViewModel()
+    private let viewModel = SearchViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()

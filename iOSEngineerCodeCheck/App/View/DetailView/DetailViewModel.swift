@@ -16,7 +16,8 @@ final class DetailViewModel: NSObject {
         case error          // エラー発生
     }
     public var state: ((State) -> Void)?
-    let apiManager = ApiManager.singleton
+    
+    private let apiManager = ApiManager.singleton
     var markdownReadMe = ""
     
     func displayReadMe(ownerName: String,
