@@ -8,7 +8,6 @@
 
 /// Akidon0000Library
 
-import UIKit
 import Foundation
 
 enum AKLogLevel: Int {
