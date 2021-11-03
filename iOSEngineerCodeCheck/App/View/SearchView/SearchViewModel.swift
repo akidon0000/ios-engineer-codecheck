@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SearchViewModel: NSObject {
+final class SearchViewModel: NSObject {
     //MARK: - STATE ステータス
     enum State {
         case busy           // 準備中

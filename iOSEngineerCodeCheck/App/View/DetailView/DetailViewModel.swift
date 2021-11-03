@@ -8,7 +8,7 @@
 
 import Foundation
 
-class DetailViewModel: NSObject {
+final class DetailViewModel: NSObject {
     //MARK: - STATE ステータス
     enum State {
         case busy           // 準備中

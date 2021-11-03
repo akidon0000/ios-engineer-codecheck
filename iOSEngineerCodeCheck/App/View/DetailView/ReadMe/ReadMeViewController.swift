@@ -9,7 +9,7 @@
 import UIKit
 import MarkdownView
 
-class ReadMeViewController: BaseViewController {
+final class ReadMeViewController: BaseViewController {
 
     public var viewModel: DetailViewModel!
     @IBOutlet weak var readMeView: UIView!
