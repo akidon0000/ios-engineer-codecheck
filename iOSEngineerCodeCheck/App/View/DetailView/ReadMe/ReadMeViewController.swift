@@ -13,7 +13,7 @@ final class ReadMeViewController: BaseViewController {
 
     public var viewModel: DetailViewModel!
     @IBOutlet weak var readMeView: UIView!
-    private let mdView = MarkdownView()
+    private let markdownView = MarkdownView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +25,8 @@ final class ReadMeViewController: BaseViewController {
     }
     
     private func refresh() {
-        self.mdView.frame = self.view.bounds
-        self.mdView.load(markdown: self.viewModel.markdownReadMe)
-        self.readMeView.addSubview(self.mdView)
+        self.markdownView.frame = self.view.bounds
+        self.markdownView.load(markdown: self.viewModel.markdownReadMe)
+        self.readMeView.addSubview(self.markdownView)
     }
 }
