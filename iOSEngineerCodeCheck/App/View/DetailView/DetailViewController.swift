@@ -20,8 +20,9 @@ final class DetailViewController: BaseViewController {
     @IBOutlet weak var issuesLabel: UILabel!
     
     public var searchViewModel: SearchViewModel!
-    var viewModel = DetailViewModel()
-    private let mdView = MarkdownView()
+    
+    private let viewModel = DetailViewModel()
+    private let markdownView = MarkdownView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
