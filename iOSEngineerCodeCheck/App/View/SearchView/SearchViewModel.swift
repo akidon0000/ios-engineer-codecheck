@@ -17,7 +17,7 @@ final class SearchViewModel: NSObject {
     }
     public var state: ((State) -> Void)?
     
-    final class Repo {
+    struct Repo {
         var lang = ""
         var stars = ""
         var watchers = ""
@@ -49,7 +49,7 @@ final class SearchViewModel: NSObject {
                                             self.repos.removeAll()
                                             
                                             for row in response.items {
-                                                let re = Repo()
+                                                var re = Repo()
                                                 if let lang = row.language {
                                                     re.lang = lang 
                                                 } else {
