@@ -21,7 +21,7 @@ class DetailViewModel: NSObject {
     
     func displayReadMe(ownerName: String,
                        repoName: String) {
-        state?(.busy) // 通信開始（通信中）
+        
         let urlString = "https://raw.githubusercontent.com/\(ownerName)/\(repoName)/main/README.md"
         self.apiManager.download(urlString: urlString,
                                  success: { [weak self] (response) in
@@ -33,12 +33,10 @@ class DetailViewModel: NSObject {
                                         self.markdownReadMe = markdown
                                     }
                                     
-                                    self.state?(.ready) // 通信完了
                                  },
                                  
                                  failure: { [weak self] (error) in
                                     AKLog(level: .ERROR, message: "[API] userUpdate: failure:\(error.localizedDescription)")
-                                    self?.state?(.error) // エラー表示
                                  })
     }
 }

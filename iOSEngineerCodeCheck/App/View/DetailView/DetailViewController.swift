@@ -26,7 +26,6 @@ final class DetailViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         refresh()
-        initViewModel()
     }
     @IBAction func readMeButton(_ sender: Any) {
         let vc = R.storyboard.readMeView.readMeView()!
@@ -46,31 +45,5 @@ final class DetailViewController: BaseViewController {
         self.imageView.loadUrl(urlString: searchViewModel.repos[idx].imageUrl)
         self.viewModel.displayReadMe(ownerName: searchViewModel.repos[idx].ownerName, repoName: searchViewModel.repos[idx].repoName)
     }
-    /// ViewModel初期化
-    private func initViewModel() {
-        // Protocol： ViewModelが変化したことの通知を受けて画面を更新する
-        self.viewModel.state = { [weak self] (state) in
-            guard let self = self else {
-                fatalError()
-            }
-            DispatchQueue.main.async {
-                switch state {
-                case .busy: // 通信中
-                    break
-                    
-                case .ready: // 通信完了
-                    // ReadMe書き込み
-                    self.mdView.frame = self.view.bounds
-                    self.mdView.load(markdown: self.viewModel.markdownReadMe)
-//                     self.view.addSubview(self.mdView)
-                    break
-                    
-                    
-                case .error:
-                    break
-                    
-                }//end switch
-            }
-        }
-    }
+    
 }
